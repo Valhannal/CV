@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanna Kachurouskaya — Senior VFX Artist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0a0a0c;
+  --bg2:#111114;
+  --accent:#ff3c1a;
+  --text:#e8e6e0;
+  --muted:#949494;
+  --dim:#333;
+  --border:#1e1e22;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-weight:300;overflow-x:hidden;}
+
+canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;opacity:0.53;pointer-events:none;z-index:0;}
+
+.wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:64px 48px 100px;}
+
+/* HEADER */
+.header{padding-bottom:40px;margin-bottom:56px;border-bottom:1px solid var(--border);animation:fadeUp .8s ease both;}
+.name{font-family:'Space Mono',monospace;font-size:42px;font-weight:700;letter-spacing:-2px;color:#fff;line-height:1;margin-bottom:10px;}
+.name em{color:var(--accent);font-style:normal;}
+.subtitle{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:24px;}
+.contacts{display:flex;flex-wrap:wrap;gap:24px;font-size:14px;color:var(--muted);}
+.contacts a{color:var(--accent);text-decoration:none;transition:opacity .2s;}
+.contacts a:hover{opacity:.6;}
+
+/* SECTION */
+.section{margin-bottom:52px;animation:fadeUp .8s ease both;}
+.s1{animation-delay:.1s}.s2{animation-delay:.2s}.s3{animation-delay:.3s}.s4{animation-delay:.4s}.s5{animation-delay:.5s}
+
+.sec-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:14px;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ABOUT */
+.about-text{font-size:19px;line-height:1.95;color:#d0d0d0;max-width:700px;}
+.about-text p{margin-bottom:16px;}
+.about-text p:last-child{margin-bottom:0;}
+
+/* JOB */
+.job{margin-bottom:32px;padding:20px 20px 20px 24px;border-left:2px solid var(--border);transition:border-color .3s;cursor:default;position:relative;}
+.job:hover{border-left-color:var(--accent);}
+.job-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:4px;margin-bottom:2px;}
+.job-title{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#fff;}
+.job-date{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);white-space:nowrap;}
+.job-company{font-size:13px;color:var(--accent);margin-bottom:14px;letter-spacing:.5px;}
+.job-body{font-size:16.5px;line-height:1.9;color:#d8d8d8;display:none;}
+.job-body.open{display:block;animation:fadeUp .3s ease both;}
+.job-body p{margin-bottom:10px;}
+.job-body p:last-child{margin-bottom:0;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+.tag{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;padding:4px 9px;border:1px solid var(--dim);color:var(--muted);border-radius:2px;transition:all .2s;}
+.tag:hover{border-color:var(--accent);color:var(--accent);}
+.toggle{margin-top:12px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);cursor:pointer;transition:color .2s;user-select:none;display:inline-block;}
+.toggle:hover{color:var(--accent);}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.sg-title{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.sg-body{font-size:15px;line-height:2.1;color:#c0c0c0;}
+.sg-body strong{color:#ccc;font-weight:400;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:600px){
+  .wrap{padding:32px 20px 60px;}
+  .name{font-size:28px;}
+  .skills-grid{grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="wrap">
+
+  <div class="header">
+    <div class="name">Hanna <em>Kachurouskaya</em></div>
+    <div class="subtitle">Senior VFX Artist &nbsp;·&nbsp; Technical Artist &nbsp;·&nbsp; Pipeline Developer</div>
+    <div class="contacts">
+      <span>Kraków, Poland</span>
+      <a href="mailto:valynets.h@gmail.com">valynets.h@gmail.com</a>
+      <span>+48 797 314 747</span>
+      <a href="https://www.linkedin.com/in/kachurouskaya-hanna-096aab114/" target="_blank">LinkedIn</a>
+      <a href="https://www.behance.net/ValHanna" target="_blank">Behance</a>
+    </div>
+  </div>
+
+
+  <div class="section s1">
+    <div class="sec-label">About</div>
+    <div class="about-text">
+      <p>I started as an artist — someone who believes that the most powerful thing a moving image can do is make you stop and just <em>stare</em>. Over time I became equally curious about how everything works underneath, and became the person who builds the tools others use — and spots why a workflow breaks three steps before anyone else notices.</p>
+      <p>I bring both: <strong>the eye for what looks right</strong>, and the instinct for why the system behind it doesn't scale. That combination is rare, and I think it's the point.</p>
+      <p>10+ years in CGI production, 4+ as a Senior VFX Artist, and the last two years moving deliberately into pipeline development and technical direction. I work across the full stack of VFX production — from lookdev and procedural effects to DCC integration, render farm orchestration and automation tooling. <strong>The creative and the technical aren't opposites for me — they inform each other constantly.</strong></p>
+    </div>
+  </div>
+
+  <div class="section s2">
+    <div class="sec-label">Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Senior VFX Artist</div>
+        <div class="job-date">Mar 2022 — Present</div>
+      </div>
+      <div class="job-company">Millarc CGI · Kraków</div>
+      <div class="job-body open" id="j1">
+        <p>Created high-end visual effects and motion design content for commercial visuals, primarily for major Chinese tech brands including Huawei, OnePlus, Xiaomi, OPPO, Vivo and others. Delivered <strong>50+ projects</strong> across advertising, product visualization, and motion design.</p>
+        <p>Among the work I'm most proud of: contributing to Millarc's signature <strong>motion wallpapers</strong> — factory-set animated visuals that ship on flagship smartphones and define the device's visual identity from the very first power-on. <a href="https://www.stashmedia.tv/mobile-motion-millarc-shows-off-smartphone-wallpapers/" target="_blank">Featured in Stash Magazine</a> as the studio cornering this niche — the most-viewed genre of motion design on the planet.</p>
+        <p>Specialized in procedural effects and simulations — volumes, particles, Vellum, RBD, FLIP, VDB, KineFX, and terrain generation — as well as custom procedural setups built with VEX and Python. Handled the full production pipeline from effect development and lookdev through rendering, compositing, and final delivery. Worked with USD and Solaris for scene assembly, Deadline for render distribution. Regularly developed custom tools and scripts to streamline technical workflows.</p>
+        <p>Actively integrated AI into the production workflow — primarily at the concept stage, and increasingly into final production. Tools used: ComfyUI, Midjourney, Kling, Photoshop AI, ChatGPT. Led concept development and creative direction on effects. Mentored junior artists and contributed to team adoption of new tools and workflows.</p>
+        <p>Continuously invested in professional growth — completed numerous industry courses and attended conferences to stay current with emerging tools and techniques.</p>
+        <div class="tags">
+          <span class="tag">Houdini</span><span class="tag">VEX</span><span class="tag">Python</span><span class="tag">Nuke</span><span class="tag">Fusion</span><span class="tag">USD/Solaris</span><span class="tag">Redshift</span><span class="tag">Deadline</span><span class="tag">Gaea</span><span class="tag">ComfyUI</span><span class="tag">Midjourney</span><span class="tag">Kling</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j1',this)">— collapse</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Pipeline Developer</div>
+        <div class="job-date">Mar 2024 — Present</div>
+      </div>
+      <div class="job-company">Millarc CGI · Kraków</div>
+      <div class="job-body" id="j2">
+        <p>Took on pipeline development organically — driven by a systems-thinking mindset and a drive to eliminate manual overhead and bring structural clarity to production workflows. Developed and maintained internal tooling used across a team of 20+, with all work documented and version-controlled via GitHub.</p>
+        <p>Built and maintained a core integration suite connecting Houdini / 3ds Max + Deadline + Flow Production (ShotGrid) via REST APIs and webhooks — handling render farm orchestration, asset delivery, and project tracking. Developed an automated render-to-preview pipeline eliminating manual render processing entirely: enforcing file naming conventions, auto-generating previews from Deadline output, and pushing them to both the project database and Flow Production.</p>
+        <p>Deployed a self-hosted server via Docker to enable bidirectional Slack API communication — allowing external triggers and notifications beyond the internal network. Developed a standalone project monitoring and reporting application integrating Timetastic, Toggl, and Slack APIs — providing real-time visibility into team time tracking, project progress, and KPI dashboards with automated report generation for studio management.</p>
+        <p>Conducted ongoing R&D into emerging pipeline tools and approaches, driving adoption of new workflows across the team through technical enablement and change management. As part of this, gained hands-on experience with Ayon as a pipeline management platform.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">REST APIs</span><span class="tag">Docker</span><span class="tag">Deadline</span><span class="tag">ShotGrid</span><span class="tag">Ayon</span><span class="tag">Git</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j2',this)">+ expand</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Digital Artist</div>
+        <div class="job-date">Mar 2021 — Mar 2022</div>
+      </div>
+      <div class="job-company">The Digital Bunch · Warsaw</div>
+      <div class="job-body" id="j3">
+        <p>Led and delivered high-quality architectural and interior visualization projects while mentoring junior team members. Expanded into motion design — developing animated project presentations and visual effects sequences. Full motion pipeline from 3D simulation and rendering to final compositing.</p>
+        <div class="tags">
+          <span class="tag">3ds Max</span><span class="tag">Houdini</span><span class="tag">Nuke</span><span class="tag">V-Ray</span><span class="tag">Corona</span><span class="tag">Photoshop</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j3',this)">+ expand</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">3D Graphic Artist</div>
+        <div class="job-date">Jan 2018 — Sep 2019</div>
+      </div>
+      <div class="job-company">VERO Digital</div>
+      <div class="job-body" id="j4">
+        <p>Photorealistic architectural and interior visualization — full pipeline from drawings to post-production. 360° renders in VR environments for client presentations.</p>
+        <div class="tags">
+          <span class="tag">3ds Max</span><span class="tag">V-Ray</span><span class="tag">Corona</span><span class="tag">Revit</span><span class="tag">SpeedTree</span><span class="tag">Unreal Engine</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j4',this)">+ expand</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">3D Artist — Freelance</div>
+        <div class="job-date">Oct 2016 — Jan 2018</div>
+      </div>
+      <div class="job-company">Independent</div>
+      <div class="job-body" id="j5">
+        <p>Architectural and interior visualization. Full pipeline from drawings and references through rendering and post-production.</p>
+        <div class="tags">
+          <span class="tag">3ds Max</span><span class="tag">V-Ray</span><span class="tag">Corona</span><span class="tag">Photoshop</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j5',this)">+ expand</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Junior Structural Design Engineer</div>
+        <div class="job-date">2013 — 2016</div>
+      </div>
+      <div class="job-company">BRIG · Belarus</div>
+      <div class="job-body" id="j6">
+        <p>On-site inspections of 50+ building structures — visual defect assessment, measurements, condition evaluation. Technical documentation in AutoCAD and Revit. Independently introduced Revit (BIM) into the team's workflow.</p>
+        <div class="tags">
+          <span class="tag">AutoCAD</span><span class="tag">Revit</span><span class="tag">BIM</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j6',this)">+ expand</div>
+    </div>
+
+  </div>
+
+  <div class="section s3">
+    <div class="sec-label">Skills</div>
+    <div class="skills-grid">
+      <div>
+        <div class="sg-title">VFX & Production</div>
+        <div class="sg-body">
+          <strong>Houdini</strong> · VEX · Nuke · Fusion<br>
+          Procedural systems · simulations<br>
+          Lookdev · rendering · compositing<br>
+          USD / Solaris · Redshift · Gaea<br>
+          3ds Max · Photoshop · SpeedTree
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">AI & Emerging</div>
+        <div class="sg-body">
+          ComfyUI · Midjourney · Kling<br>
+          Photoshop AI · ChatGPT<br>
+          AI-assisted concept & production<br>
+          
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">Technical / Pipeline</div>
+        <div class="sg-body">
+          <strong>Python</strong> · REST APIs · Docker<br>
+          Deadline · Flow Production · Ayon<br>
+          Git / GitHub · custom tooling
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">Soft Skills</div>
+        <div class="sg-body">
+          Mentoring & knowledge sharing<br>
+          Cross-department collaboration<br>
+          Strategic problem solving<br>
+          People remember me — and come back<br>
+          Building lasting professional relationships
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">Education</div>
+        <div class="sg-body">
+          <strong>Bachelor of Engineering</strong><br>
+          Brest State Technical University<br>
+          Belarus · 2009 — 2014<br><br>
+          English (Intermediate) · Polish (Native)
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+
+// Hide placeholder when video loads
+const vid = document.getElementById('herovid');
+if(vid){
+  vid.addEventListener('canplay', () => {
+    // keep placeholder visible — it's the background image
+    // just hide the text hint
+    const pt = document.querySelector('.placeholder-text');
+    if(pt) pt.style.display = 'none';
+  });
+  vid.addEventListener('error', () => { vid.style.display = 'none'; });
+}
+
+function tog(id, btn){
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+  btn.textContent = el.classList.contains('open') ? '— collapse' : '+ expand';
+}
+
+// Particle simulation - fluid-like organic particles referencing VFX/Houdini work
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [], mouse = {x: -999, y: -999};
+// Bright spots sampled from the image (normalised 0-1)
+const SPOTS = [{"x": 0.4, "y": 0.1125, "b": 0.5698588235294118, "r": 169, "g": 137, "bl": 126}, {"x": 0.5625, "y": 0.275, "b": 0.5814156862745098, "r": 165, "g": 146, "bl": 116}, {"x": 0.5375, "y": 0.2875, "b": 0.6021529411764707, "r": 169, "g": 152, "bl": 121}, {"x": 0.2625, "y": 0.3, "b": 0.5539215686274509, "r": 156, "g": 140, "bl": 109}, {"x": 0.5125, "y": 0.3, "b": 0.6478627450980392, "r": 178, "g": 163, "bl": 143}, {"x": 0.525, "y": 0.3, "b": 0.6002313725490196, "r": 169, "g": 150, "bl": 127}, {"x": 0.25, "y": 0.3125, "b": 0.6533450980392157, "r": 183, "g": 164, "bl": 137}, {"x": 0.2625, "y": 0.3125, "b": 0.6004745098039215, "r": 171, "g": 152, "bl": 112}, {"x": 0.275, "y": 0.3125, "b": 0.6055254901960784, "r": 171, "g": 154, "bl": 113}, {"x": 0.2875, "y": 0.3125, "b": 0.5881529411764705, "r": 166, "g": 149, "bl": 113}, {"x": 0.5, "y": 0.3125, "b": 0.6976117647058824, "r": 193, "g": 176, "bl": 148}, {"x": 0.5125, "y": 0.3125, "b": 0.6514901960784314, "r": 183, "g": 163, "bl": 138}, {"x": 0.2625, "y": 0.325, "b": 0.5987882352941175, "r": 170, "g": 151, "bl": 116}, {"x": 0.275, "y": 0.325, "b": 0.6419490196078431, "r": 179, "g": 164, "bl": 122}, {"x": 0.2875, "y": 0.325, "b": 0.6368549019607843, "r": 177, "g": 163, "bl": 121}, {"x": 0.3, "y": 0.325, "b": 0.6142196078431371, "r": 171, "g": 157, "bl": 117}, {"x": 0.3125, "y": 0.325, "b": 0.5756627450980392, "r": 162, "g": 146, "bl": 111}, {"x": 0.4875, "y": 0.325, "b": 0.6825843137254901, "r": 190, "g": 171, "bl": 148}, {"x": 0.5, "y": 0.325, "b": 0.7687058823529411, "r": 208, "g": 194, "bl": 175}, {"x": 0.5125, "y": 0.325, "b": 0.6294705882352941, "r": 176, "g": 157, "bl": 138}, {"x": 0.2375, "y": 0.3375, "b": 0.5557803921568627, "r": 165, "g": 137, "bl": 105}, {"x": 0.275, "y": 0.3375, "b": 0.5804784313725491, "r": 163, "g": 147, "bl": 114}, {"x": 0.2875, "y": 0.3375, "b": 0.6299058823529412, "r": 175, "g": 161, "bl": 121}, {"x": 0.3, "y": 0.3375, "b": 0.6474470588235294, "r": 179, "g": 166, "bl": 124}, {"x": 0.3125, "y": 0.3375, "b": 0.619313725490196, "r": 173, "g": 158, "bl": 118}, {"x": 0.325, "y": 0.3375, "b": 0.5971254901960784, "r": 167, "g": 152, "bl": 115}, {"x": 0.3375, "y": 0.3375, "b": 0.5673058823529411, "r": 160, "g": 143, "bl": 113}, {"x": 0.475, "y": 0.3375, "b": 0.6291333333333333, "r": 178, "g": 157, "bl": 132}, {"x": 0.4875, "y": 0.3375, "b": 0.7945372549019607, "r": 214, "g": 201, "bl": 181}, {"x": 0.5, "y": 0.3375, "b": 0.7713882352941177, "r": 208, "g": 194, "bl": 181}, {"x": 0.5125, "y": 0.3375, "b": 0.6589882352941177, "r": 184, "g": 164, "bl": 147}, {"x": 0.2625, "y": 0.35, "b": 0.5713960784313725, "r": 160, "g": 144, "bl": 117}, {"x": 0.275, "y": 0.35, "b": 0.5631058823529412, "r": 158, "g": 142, "bl": 114}, {"x": 0.2875, "y": 0.35, "b": 0.5529607843137254, "r": 156, "g": 139, "bl": 112}, {"x": 0.3, "y": 0.35, "b": 0.5966117647058823, "r": 167, "g": 151, "bl": 119}, {"x": 0.3125, "y": 0.35, "b": 0.633592156862745, "r": 177, "g": 161, "bl": 124}, {"x": 0.325, "y": 0.35, "b": 0.6354470588235294, "r": 177, "g": 162, "bl": 123}, {"x": 0.3375, "y": 0.35, "b": 0.6054156862745098, "r": 169, "g": 154, "bl": 118}, {"x": 0.35, "y": 0.35, "b": 0.5848470588235293, "r": 164, "g": 148, "bl": 116}, {"x": 0.3625, "y": 0.35, "b": 0.5677529411764706, "r": 160, "g": 143, "bl": 114}, {"x": 0.4625, "y": 0.35, "b": 0.5966313725490195, "r": 171, "g": 148, "bl": 124}, {"x": 0.475, "y": 0.35, "b": 0.8023803921568627, "r": 216, "g": 203, "bl": 183}, {"x": 0.4875, "y": 0.35, "b": 0.8211529411764706, "r": 218, "g": 208, "bl": 194}, {"x": 0.5, "y": 0.35, "b": 0.8093882352941176, "r": 215, "g": 205, "bl": 191}, {"x": 0.5125, "y": 0.35, "b": 0.7100941176470588, "r": 194, "g": 178, "bl": 163}, {"x": 0.3125, "y": 0.3625, "b": 0.5656196078431371, "r": 159, "g": 142, "bl": 117}, {"x": 0.325, "y": 0.3625, "b": 0.5991254901960784, "r": 168, "g": 151, "bl": 122}, {"x": 0.3375, "y": 0.3625, "b": 0.6247882352941176, "r": 175, "g": 158, "bl": 125}, {"x": 0.35, "y": 0.3625, "b": 0.6079294117647059, "r": 170, "g": 154, "bl": 121}, {"x": 0.3625, "y": 0.3625, "b": 0.5809254901960785, "r": 163, "g": 147, "bl": 115}, {"x": 0.375, "y": 0.3625, "b": 0.5813725490196079, "r": 163, "g": 147, "bl": 116}, {"x": 0.4625, "y": 0.3625, "b": 0.7650627450980393, "r": 208, "g": 193, "bl": 172}, {"x": 0.475, "y": 0.3625, "b": 0.8374549019607842, "r": 221, "g": 212, "bl": 202}, {"x": 0.4875, "y": 0.3625, "b": 0.8577450980392156, "r": 225, "g": 218, "bl": 206}, {"x": 0.5, "y": 0.3625, "b": 0.8395882352941176, "r": 222, "g": 213, "bl": 199}, {"x": 0.5125, "y": 0.3625, "b": 0.7889294117647059, "r": 212, "g": 199, "bl": 184}, {"x": 0.525, "y": 0.3625, "b": 0.6081764705882352, "r": 170, "g": 151, "bl": 137}, {"x": 0.325, "y": 0.375, "b": 0.5503803921568627, "r": 155, "g": 138, "bl": 114}, {"x": 0.3375, "y": 0.375, "b": 0.5773843137254903, "r": 162, "g": 145, "bl": 120}, {"x": 0.35, "y": 0.375, "b": 0.5926235294117645, "r": 166, "g": 149, "bl": 123}, {"x": 0.3625, "y": 0.375, "b": 0.5912823529411764, "r": 166, "g": 149, "bl": 120}, {"x": 0.375, "y": 0.375, "b": 0.5582901960784313, "r": 157, "g": 141, "bl": 111}, {"x": 0.3875, "y": 0.375, "b": 0.5511725490196079, "r": 156, "g": 139, "bl": 108}, {"x": 0.4625, "y": 0.375, "b": 0.7822588235294118, "r": 211, "g": 197, "bl": 182}, {"x": 0.475, "y": 0.375, "b": 0.8060823529411765, "r": 213, "g": 204, "bl": 194}, {"x": 0.4875, "y": 0.375, "b": 0.8728745098039215, "r": 227, "g": 222, "bl": 214}, {"x": 0.5, "y": 0.375, "b": 0.8384156862745098, "r": 221, "g": 213, "bl": 199}, {"x": 0.5125, "y": 0.375, "b": 0.8199803921568626, "r": 217, "g": 208, "bl": 194}, {"x": 0.525, "y": 0.375, "b": 0.6759725490196078, "r": 186, "g": 169, "bl": 154}, {"x": 0.35, "y": 0.3875, "b": 0.5616980392156862, "r": 158, "g": 141, "bl": 116}, {"x": 0.3625, "y": 0.3875, "b": 0.5642117647058823, "r": 159, "g": 141, "bl": 119}, {"x": 0.375, "y": 0.3875, "b": 0.5612509803921568, "r": 158, "g": 141, "bl": 115}, {"x": 0.4625, "y": 0.3875, "b": 0.7953215686274511, "r": 212, "g": 201, "bl": 188}, {"x": 0.475, "y": 0.3875, "b": 0.7692117647058824, "r": 205, "g": 194, "bl": 184}, {"x": 0.4875, "y": 0.3875, "b": 0.8265411764705881, "r": 216, "g": 210, "bl": 201}, {"x": 0.5, "y": 0.3875, "b": 0.8310196078431372, "r": 219, "g": 211, "bl": 198}, {"x": 0.5125, "y": 0.3875, "b": 0.8448078431372549, "r": 221, "g": 215, "bl": 203}, {"x": 0.525, "y": 0.3875, "b": 0.7697686274509805, "r": 207, "g": 194, "bl": 180}, {"x": 0.5375, "y": 0.3875, "b": 0.5868235294117647, "r": 167, "g": 145, "bl": 128}, {"x": 0.475, "y": 0.4, "b": 0.7459607843137255, "r": 200, "g": 188, "bl": 176}, {"x": 0.4875, "y": 0.4, "b": 0.7680392156862745, "r": 204, "g": 194, "bl": 184}, {"x": 0.5, "y": 0.4, "b": 0.8300156862745098, "r": 217, "g": 211, "bl": 201}, {"x": 0.5125, "y": 0.4, "b": 0.8247960784313726, "r": 218, "g": 209, "bl": 197}, {"x": 0.525, "y": 0.4, "b": 0.8098352941176471, "r": 215, "g": 205, "bl": 192}, {"x": 0.5375, "y": 0.4, "b": 0.6460509803921568, "r": 180, "g": 161, "bl": 144}, {"x": 0.3375, "y": 0.4125, "b": 0.602678431372549, "r": 170, "g": 149, "bl": 135}, {"x": 0.35, "y": 0.4125, "b": 0.6724980392156863, "r": 185, "g": 168, "bl": 154}, {"x": 0.3625, "y": 0.4125, "b": 0.6505882352941176, "r": 180, "g": 162, "bl": 149}, {"x": 0.375, "y": 0.4125, "b": 0.6654470588235294, "r": 184, "g": 167, "bl": 146}, {"x": 0.3875, "y": 0.4125, "b": 0.6129333333333333, "r": 174, "g": 152, "bl": 132}, {"x": 0.4, "y": 0.4125, "b": 0.5820078431372548, "r": 166, "g": 144, "bl": 125}, {"x": 0.4125, "y": 0.4125, "b": 0.5723764705882353, "r": 164, "g": 142, "bl": 119}, {"x": 0.475, "y": 0.4125, "b": 0.5764666666666666, "r": 164, "g": 143, "bl": 123}, {"x": 0.4875, "y": 0.4125, "b": 0.7581725490196078, "r": 203, "g": 191, "bl": 180}, {"x": 0.5, "y": 0.4125, "b": 0.8081058823529411, "r": 212, "g": 205, "bl": 196}, {"x": 0.5125, "y": 0.4125, "b": 0.8165058823529412, "r": 216, "g": 207, "bl": 194}, {"x": 0.525, "y": 0.4125, "b": 0.8142039215686275, "r": 216, "g": 206, "bl": 194}, {"x": 0.5375, "y": 0.4125, "b": 0.6984980392156862, "r": 190, "g": 175, "bl": 163}, {"x": 0.55, "y": 0.4125, "b": 0.5711372549019608, "r": 163, "g": 141, "bl": 124}, {"x": 0.3, "y": 0.425, "b": 0.5492705882352941, "r": 160, "g": 134, "bl": 119}, {"x": 0.3125, "y": 0.425, "b": 0.6833019607843137, "r": 188, "g": 170, "bl": 160}, {"x": 0.325, "y": 0.425, "b": 0.7172117647058824, "r": 195, "g": 180, "bl": 166}, {"x": 0.3375, "y": 0.425, "b": 0.7902705882352942, "r": 212, "g": 199, "bl": 187}, {"x": 0.35, "y": 0.425, "b": 0.8113450980392157, "r": 214, "g": 205, "bl": 198}, {"x": 0.3625, "y": 0.425, "b": 0.8085529411764705, "r": 212, "g": 205, "bl": 197}, {"x": 0.375, "y": 0.425, "b": 0.8100039215686274, "r": 214, "g": 205, "bl": 195}, {"x": 0.3875, "y": 0.425, "b": 0.7963843137254902, "r": 211, "g": 201, "bl": 193}, {"x": 0.4, "y": 0.425, "b": 0.8094901960784313, "r": 214, "g": 204, "bl": 199}, {"x": 0.4125, "y": 0.425, "b": 0.7963843137254902, "r": 211, "g": 201, "bl": 193}, {"x": 0.425, "y": 0.425, "b": 0.7610313725490195, "r": 205, "g": 192, "bl": 176}, {"x": 0.4375, "y": 0.425, "b": 0.7041490196078432, "r": 194, "g": 176, "bl": 160}, {"x": 0.45, "y": 0.425, "b": 0.7023176470588236, "r": 192, "g": 177, "bl": 156}, {"x": 0.4625, "y": 0.425, "b": 0.5893450980392156, "r": 171, "g": 146, "bl": 118}, {"x": 0.475, "y": 0.425, "b": 0.5791999999999998, "r": 169, "g": 143, "bl": 116}, {"x": 0.4875, "y": 0.425, "b": 0.7250549019607844, "r": 197, "g": 182, "bl": 168}, {"x": 0.5, "y": 0.425, "b": 0.790564705882353, "r": 208, "g": 200, "bl": 193}, {"x": 0.5125, "y": 0.425, "b": 0.821043137254902, "r": 216, "g": 208, "bl": 199}, {"x": 0.525, "y": 0.425, "b": 0.8098352941176471, "r": 215, "g": 205, "bl": 192}, {"x": 0.5375, "y": 0.425, "b": 0.745513725490196, "r": 200, "g": 188, "bl": 175}, {"x": 0.55, "y": 0.425, "b": 0.6116509803921568, "r": 171, "g": 152, "bl": 137}, {"x": 0.25, "y": 0.4375, "b": 0.5715921568627451, "r": 166, "g": 142, "bl": 112}, {"x": 0.2625, "y": 0.4375, "b": 0.6580941176470588, "r": 184, "g": 164, "bl": 145}, {"x": 0.275, "y": 0.4375, "b": 0.7798470588235294, "r": 209, "g": 196, "bl": 187}, {"x": 0.2875, "y": 0.4375, "b": 0.7946392156862745, "r": 213, "g": 200, "bl": 189}, {"x": 0.3, "y": 0.4375, "b": 0.7825960784313726, "r": 209, "g": 197, "bl": 188}, {"x": 0.3125, "y": 0.4375, "b": 0.8251333333333333, "r": 216, "g": 209, "bl": 203}, {"x": 0.325, "y": 0.4375, "b": 0.8064196078431373, "r": 211, "g": 204, "bl": 200}, {"x": 0.3375, "y": 0.4375, "b": 0.8402627450980392, "r": 218, "g": 213, "bl": 211}, {"x": 0.35, "y": 0.4375, "b": 0.8582509803921569, "r": 222, "g": 218, "bl": 215}, {"x": 0.3625, "y": 0.4375, "b": 0.8361725490196078, "r": 218, "g": 212, "bl": 207}, {"x": 0.375, "y": 0.4375, "b": 0.8302274509803922, "r": 218, "g": 210, "bl": 204}, {"x": 0.3875, "y": 0.4375, "b": 0.8405411764705882, "r": 219, "g": 213, "bl": 209}, {"x": 0.4, "y": 0.4375, "b": 0.8515803921568628, "r": 221, "g": 216, "bl": 213}, {"x": 0.4125, "y": 0.4375, "b": 0.8562274509803921, "r": 223, "g": 217, "bl": 213}, {"x": 0.425, "y": 0.4375, "b": 0.8449098039215687, "r": 220, "g": 214, "bl": 211}, {"x": 0.4375, "y": 0.4375, "b": 0.8472117647058824, "r": 220, "g": 215, "bl": 211}, {"x": 0.45, "y": 0.4375, "b": 0.8129215686274509, "r": 213, "g": 206, "bl": 199}, {"x": 0.4625, "y": 0.4375, "b": 0.839478431372549, "r": 220, "g": 213, "bl": 204}, {"x": 0.475, "y": 0.4375, "b": 0.8097254901960784, "r": 213, "g": 205, "bl": 197}, {"x": 0.4875, "y": 0.4375, "b": 0.7687647058823529, "r": 205, "g": 194, "bl": 183}, {"x": 0.5, "y": 0.4375, "b": 0.7783529411764706, "r": 205, "g": 197, "bl": 189}, {"x": 0.5125, "y": 0.4375, "b": 0.8168431372549019, "r": 214, "g": 207, "bl": 200}, {"x": 0.525, "y": 0.4375, "b": 0.8201490196078431, "r": 216, "g": 208, "bl": 197}, {"x": 0.5375, "y": 0.4375, "b": 0.7863058823529411, "r": 209, "g": 199, "bl": 186}, {"x": 0.55, "y": 0.4375, "b": 0.6528901960784314, "r": 180, "g": 163, "bl": 149}, {"x": 0.2375, "y": 0.45, "b": 0.6000392156862744, "r": 172, "g": 148, "bl": 129}, {"x": 0.25, "y": 0.45, "b": 0.7745843137254901, "r": 208, "g": 195, "bl": 183}, {"x": 0.2625, "y": 0.45, "b": 0.8226627450980392, "r": 217, "g": 208, "bl": 200}, {"x": 0.275, "y": 0.45, "b": 0.8393686274509803, "r": 218, "g": 213, "bl": 209}, {"x": 0.2875, "y": 0.45, "b": 0.8543294117647058, "r": 221, "g": 217, "bl": 214}, {"x": 0.3, "y": 0.45, "b": 0.8845294117647058, "r": 228, "g": 225, "bl": 222}, {"x": 0.3125, "y": 0.45, "b": 0.8711882352941176, "r": 226, "g": 221, "bl": 218}, {"x": 0.325, "y": 0.45, "b": 0.8428431372549019, "r": 219, "g": 214, "bl": 209}, {"x": 0.3375, "y": 0.45, "b": 0.8523058823529411, "r": 222, "g": 216, "bl": 212}, {"x": 0.35, "y": 0.45, "b": 0.8785843137254902, "r": 228, "g": 223, "bl": 219}, {"x": 0.3625, "y": 0.45, "b": 0.875556862745098, "r": 227, "g": 222, "bl": 220}, {"x": 0.375, "y": 0.45, "b": 0.8380705882352941, "r": 220, "g": 212, "bl": 206}, {"x": 0.3875, "y": 0.45, "b": 0.8474901960784313, "r": 221, "g": 215, "bl": 209}, {"x": 0.4, "y": 0.45, "b": 0.8621725490196078, "r": 223, "g": 219, "bl": 216}, {"x": 0.4125, "y": 0.45, "b": 0.8896235294117648, "r": 230, "g": 226, "bl": 223}, {"x": 0.425, "y": 0.45, "b": 0.8557803921568627, "r": 223, "g": 217, "bl": 212}, {"x": 0.4375, "y": 0.45, "b": 0.8491098039215687, "r": 222, "g": 215, "bl": 210}, {"x": 0.45, "y": 0.45, "b": 0.8152666666666667, "r": 215, "g": 206, "bl": 199}, {"x": 0.4625, "y": 0.45, "b": 0.8320823529411764, "r": 218, "g": 211, "bl": 203}, {"x": 0.475, "y": 0.45, "b": 0.8656470588235293, "r": 224, "g": 220, "bl": 216}, {"x": 0.4875, "y": 0.45, "b": 0.7789098039215686, "r": 207, "g": 197, "bl": 185}, {"x": 0.5, "y": 0.45, "b": 0.7742627450980392, "r": 205, "g": 196, "bl": 185}, {"x": 0.5125, "y": 0.45, "b": 0.797235294117647, "r": 209, "g": 202, "bl": 195}, {"x": 0.525, "y": 0.45, "b": 0.8293333333333333, "r": 218, "g": 210, "bl": 202}, {"x": 0.5375, "y": 0.45, "b": 0.8173999999999999, "r": 216, "g": 207, "bl": 196}, {"x": 0.55, "y": 0.45, "b": 0.6984980392156862, "r": 190, "g": 175, "bl": 163}, {"x": 0.8, "y": 0.45, "b": 0.5601450980392156, "r": 183, "g": 134, "bl": 83}, {"x": 0.8125, "y": 0.45, "b": 0.5502784313725491, "r": 182, "g": 131, "bl": 79}, {"x": 0.225, "y": 0.4625, "b": 0.7483058823529412, "r": 202, "g": 188, "bl": 176}, {"x": 0.2375, "y": 0.4625, "b": 0.7026980392156862, "r": 192, "g": 176, "bl": 162}, {"x": 0.25, "y": 0.4625, "b": 0.7638823529411765, "r": 204, "g": 192, "bl": 185}, {"x": 0.2625, "y": 0.4625, "b": 0.8077019607843136, "r": 214, "g": 204, "bl": 195}, {"x": 0.275, "y": 0.4625, "b": 0.8559490196078431, "r": 222, "g": 217, "bl": 215}, {"x": 0.2875, "y": 0.4625, "b": 0.8681607843137253, "r": 225, "g": 220, "bl": 219}, {"x": 0.3, "y": 0.4625, "b": 0.8944392156862745, "r": 231, "g": 227, "bl": 226}, {"x": 0.3125, "y": 0.4625, "b": 0.9050313725490196, "r": 233, "g": 230, "bl": 229}, {"x": 0.325, "y": 0.4625, "b": 0.9011098039215686, "r": 232, "g": 229, "bl": 228}, {"x": 0.3375, "y": 0.4625, "b": 0.8329764705882352, "r": 218, "g": 211, "bl": 205}, {"x": 0.35, "y": 0.4625, "b": 0.8707411764705882, "r": 226, "g": 221, "bl": 217}, {"x": 0.3625, "y": 0.4625, "b": 0.8923725490196078, "r": 230, "g": 227, "bl": 224}, {"x": 0.375, "y": 0.4625, "b": 0.8447411764705882, "r": 221, "g": 214, "bl": 208}, {"x": 0.3875, "y": 0.4625, "b": 0.8332549019607842, "r": 219, "g": 211, "bl": 203}, {"x": 0.4, "y": 0.4625, "b": 0.8566745098039216, "r": 223, "g": 217, "bl": 214}, {"x": 0.4125, "y": 0.4625, "b": 0.8861490196078431, "r": 229, "g": 225, "bl": 223}, {"x": 0.425, "y": 0.4625, "b": 0.8451882352941177, "r": 221, "g": 214, "bl": 209}, {"x": 0.4375, "y": 0.4625, "b": 0.8486627450980392, "r": 222, "g": 215, "bl": 209}, {"x": 0.45, "y": 0.4625, "b": 0.8187411764705882, "r": 216, "g": 207, "bl": 199}, {"x": 0.4625, "y": 0.4625, "b": 0.8072549019607842, "r": 214, "g": 204, "bl": 194}, {"x": 0.475, "y": 0.4625, "b": 0.8585294117647058, "r": 223, "g": 218, "bl": 213}, {"x": 0.4875, "y": 0.4625, "b": 0.8033333333333333, "r": 213, "g": 203, "bl": 193}, {"x": 0.5, "y": 0.4625, "b": 0.7780588235294118, "r": 209, "g": 196, "bl": 183}, {"x": 0.5125, "y": 0.4625, "b": 0.7878156862745098, "r": 208, "g": 199, "bl": 192}, {"x": 0.525, "y": 0.4625, "b": 0.8207647058823527, "r": 215, "g": 208, "bl": 201}, {"x": 0.5375, "y": 0.4625, "b": 0.8367294117647058, "r": 220, "g": 212, "bl": 203}, {"x": 0.55, "y": 0.4625, "b": 0.7491568627450981, "r": 200, "g": 189, "bl": 178}, {"x": 0.5625, "y": 0.4625, "b": 0.6038078431372549, "r": 169, "g": 150, "bl": 135}, {"x": 0.775, "y": 0.4625, "b": 0.5700705882352942, "r": 181, "g": 137, "bl": 95}, {"x": 0.7875, "y": 0.4625, "b": 0.6392745098039215, "r": 197, "g": 156, "bl": 110}, {"x": 0.8, "y": 0.4625, "b": 0.6597176470588234, "r": 205, "g": 161, "bl": 109}, {"x": 0.2, "y": 0.475, "b": 0.648843137254902, "r": 182, "g": 161, "bl": 145}, {"x": 0.2125, "y": 0.475, "b": 0.674886274509804, "r": 189, "g": 167, "bl": 154}, {"x": 0.225, "y": 0.475, "b": 0.6483294117647058, "r": 182, "g": 160, "bl": 149}, {"x": 0.2375, "y": 0.475, "b": 0.6794901960784314, "r": 189, "g": 169, "bl": 154}, {"x": 0.25, "y": 0.475, "b": 0.7193372549019608, "r": 193, "g": 180, "bl": 176}, {"x": 0.2625, "y": 0.475, "b": 0.7786745098039216, "r": 208, "g": 196, "bl": 187}, {"x": 0.275, "y": 0.475, "b": 0.8035019607843136, "r": 212, "g": 203, "bl": 196}, {"x": 0.2875, "y": 0.475, "b": 0.8617254901960784, "r": 223, "g": 219, "bl": 215}, {"x": 0.3, "y": 0.475, "b": 0.8817803921568627, "r": 228, "g": 224, "bl": 221}, {"x": 0.3125, "y": 0.475, "b": 0.8983607843137255, "r": 232, "g": 228, "bl": 227}, {"x": 0.325, "y": 0.475, "b": 0.9050313725490196, "r": 233, "g": 230, "bl": 229}, {"x": 0.3375, "y": 0.475, "b": 0.857356862745098, "r": 222, "g": 218, "bl": 213}, {"x": 0.35, "y": 0.475, "b": 0.8258588235294116, "r": 217, "g": 209, "bl": 202}, {"x": 0.3625, "y": 0.475, "b": 0.8900705882352942, "r": 230, "g": 226, "bl": 224}, {"x": 0.375, "y": 0.475, "b": 0.8479372549019607, "r": 221, "g": 215, "bl": 210}, {"x": 0.3875, "y": 0.475, "b": 0.8182941176470588, "r": 216, "g": 207, "bl": 198}, {"x": 0.4, "y": 0.475, "b": 0.849556862745098, "r": 222, "g": 215, "bl": 211}, {"x": 0.4125, "y": 0.475, "b": 0.878305882352941, "r": 227, "g": 223, "bl": 221}, {"x": 0.425, "y": 0.475, "b": 0.8486627450980392, "r": 222, "g": 215, "bl": 209}, {"x": 0.4375, "y": 0.475, "b": 0.8434, "r": 221, "g": 214, "bl": 205}, {"x": 0.45, "y": 0.475, "b": 0.8223843137254901, "r": 216, "g": 208, "bl": 202}, {"x": 0.4625, "y": 0.475, "b": 0.8028862745098039, "r": 213, "g": 203, "bl": 192}, {"x": 0.475, "y": 0.475, "b": 0.8440156862745097, "r": 220, "g": 214, "bl": 209}, {"x": 0.4875, "y": 0.475, "b": 0.8065294117647058, "r": 213, "g": 204, "bl": 195}, {"x": 0.5, "y": 0.475, "b": 0.7748627450980391, "r": 209, "g": 195, "bl": 181}, {"x": 0.5125, "y": 0.475, "b": 0.8021607843137254, "r": 212, "g": 203, "bl": 193}, {"x": 0.525, "y": 0.475, "b": 0.7979607843137255, "r": 210, "g": 202, "bl": 194}, {"x": 0.5375, "y": 0.475, "b": 0.8426745098039216, "r": 220, "g": 214, "bl": 206}, {"x": 0.55, "y": 0.475, "b": 0.7903960784313725, "r": 209, "g": 200, "bl": 190}, {"x": 0.5625, "y": 0.475, "b": 0.6634823529411764, "r": 182, "g": 166, "bl": 152}, {"x": 0.775, "y": 0.475, "b": 0.6201725490196078, "r": 189, "g": 151, "bl": 114}, {"x": 0.7875, "y": 0.475, "b": 0.7424235294117646, "r": 219, "g": 183, "bl": 144}, {"x": 0.8, "y": 0.475, "b": 0.5950078431372549, "r": 187, "g": 144, "bl": 99}, {"x": 0.1875, "y": 0.4875, "b": 0.6617803921568628, "r": 186, "g": 164, "bl": 148}, {"x": 0.2, "y": 0.4875, "b": 0.7531215686274509, "r": 203, "g": 189, "bl": 179}, {"x": 0.2125, "y": 0.4875, "b": 0.6502941176470588, "r": 184, "g": 161, "bl": 143}, {"x": 0.225, "y": 0.4875, "b": 0.5625294117647058, "r": 167, "g": 136, "bl": 120}, {"x": 0.2375, "y": 0.4875, "b": 0.6329647058823529, "r": 181, "g": 155, "bl": 143}, {"x": 0.25, "y": 0.4875, "b": 0.6860509803921568, "r": 188, "g": 171, "bl": 161}, {"x": 0.2625, "y": 0.4875, "b": 0.7355372549019608, "r": 197, "g": 185, "bl": 176}, {"x": 0.275, "y": 0.4875, "b": 0.7641607843137255, "r": 205, "g": 192, "bl": 183}, {"x": 0.2875, "y": 0.4875, "b": 0.8140941176470587, "r": 214, "g": 206, "bl": 199}, {"x": 0.3, "y": 0.4875, "b": 0.8637921568627451, "r": 224, "g": 219, "bl": 217}, {"x": 0.3125, "y": 0.4875, "b": 0.8822274509803921, "r": 228, "g": 224, "bl": 222}, {"x": 0.325, "y": 0.4875, "b": 0.8983607843137255, "r": 232, "g": 228, "bl": 227}, {"x": 0.3375, "y": 0.4875, "b": 0.8932666666666668, "r": 230, "g": 227, "bl": 226}, {"x": 0.35, "y": 0.4875, "b": 0.7971098039215686, "r": 212, "g": 201, "bl": 192}, {"x": 0.3625, "y": 0.4875, "b": 0.875835294117647, "r": 228, "g": 222, "bl": 218}, {"x": 0.375, "y": 0.4875, "b": 0.8523058823529411, "r": 222, "g": 216, "bl": 212}, {"x": 0.3875, "y": 0.4875, "b": 0.8150980392156862, "r": 216, "g": 206, "bl": 196}, {"x": 0.4, "y": 0.4875, "b": 0.8306745098039215, "r": 218, "g": 210, "bl": 205}, {"x": 0.4125, "y": 0.4875, "b": 0.8555019607843138, "r": 222, "g": 217, "bl": 214}, {"x": 0.425, "y": 0.4875, "b": 0.8514117647058823, "r": 222, "g": 216, "bl": 210}, {"x": 0.4375, "y": 0.4875, "b": 0.8155450980392157, "r": 216, "g": 206, "bl": 197}, {"x": 0.45, "y": 0.4875, "b": 0.823556862745098, "r": 217, "g": 208, "bl": 202}, {"x": 0.4625, "y": 0.4875, "b": 0.8028862745098039, "r": 213, "g": 203, "bl": 192}, {"x": 0.475, "y": 0.4875, "b": 0.8435686274509804, "r": 220, "g": 214, "bl": 208}, {"x": 0.4875, "y": 0.4875, "b": 0.8139254901960784, "r": 215, "g": 206, "bl": 196}, {"x": 0.5, "y": 0.4875, "b": 0.777164705882353, "r": 209, "g": 196, "bl": 181}, {"x": 0.5125, "y": 0.4875, "b": 0.8084274509803921, "r": 215, "g": 204, "bl": 194}, {"x": 0.525, "y": 0.4875, "b": 0.7779490196078431, "r": 207, "g": 196, "bl": 188}, {"x": 0.5375, "y": 0.4875, "b": 0.8163960784313725, "r": 214, "g": 207, "bl": 199}, {"x": 0.55, "y": 0.4875, "b": 0.8127529411764706, "r": 214, "g": 206, "bl": 196}, {"x": 0.5625, "y": 0.4875, "b": 0.708643137254902, "r": 192, "g": 178, "bl": 165}, {"x": 0.775, "y": 0.4875, "b": 0.6342392156862745, "r": 192, "g": 155, "bl": 117}, {"x": 0.7875, "y": 0.4875, "b": 0.6612862745098038, "r": 201, "g": 161, "bl": 123}, {"x": 0.8, "y": 0.4875, "b": 0.6076666666666666, "r": 190, "g": 147, "bl": 104}, {"x": 0.8125, "y": 0.4875, "b": 0.6078156862745098, "r": 185, "g": 150, "bl": 102}, {"x": 0.825, "y": 0.4875, "b": 0.7170745098039215, "r": 197, "g": 183, "bl": 145}, {"x": 0.175, "y": 0.5, "b": 0.7196, "r": 199, "g": 179, "bl": 166}, {"x": 0.1875, "y": 0.5, "b": 0.771, "r": 205, "g": 194, "bl": 188}, {"x": 0.2, "y": 0.5, "b": 0.6140823529411764, "r": 177, "g": 150, "bl": 137}, {"x": 0.2125, "y": 0.5, "b": 0.622035294117647, "r": 181, "g": 152, "bl": 134}, {"x": 0.225, "y": 0.5, "b": 0.5911529411764705, "r": 175, "g": 143, "bl": 127}, {"x": 0.2375, "y": 0.5, "b": 0.5622941176470588, "r": 168, "g": 135, "bl": 122}, {"x": 0.25, "y": 0.5, "b": 0.6615450980392157, "r": 187, "g": 163, "bl": 150}, {"x": 0.2625, "y": 0.5, "b": 0.6684666666666667, "r": 182, "g": 167, "bl": 158}, {"x": 0.275, "y": 0.5, "b": 0.7475803921568627, "r": 201, "g": 188, "bl": 177}, {"x": 0.2875, "y": 0.5, "b": 0.767635294117647, "r": 206, "g": 193, "bl": 183}, {"x": 0.3, "y": 0.5, "b": 0.831121568627451, "r": 218, "g": 210, "bl": 206}, {"x": 0.3125, "y": 0.5, "b": 0.8633450980392157, "r": 224, "g": 219, "bl": 216}, {"x": 0.325, "y": 0.5, "b": 0.8861490196078431, "r": 229, "g": 225, "bl": 223}, {"x": 0.3375, "y": 0.5, "b": 0.8983607843137255, "r": 232, "g": 228, "bl": 227}, {"x": 0.35, "y": 0.5, "b": 0.8143725490196078, "r": 215, "g": 206, "bl": 197}, {"x": 0.3625, "y": 0.5, "b": 0.8265843137254901, "r": 218, "g": 209, "bl": 201}, {"x": 0.375, "y": 0.5, "b": 0.8597019607843138, "r": 224, "g": 218, "bl": 213}, {"x": 0.3875, "y": 0.5, "b": 0.8116235294117647, "r": 215, "g": 205, "bl": 196}, {"x": 0.4, "y": 0.5, "b": 0.8182941176470588, "r": 216, "g": 207, "bl": 198}, {"x": 0.4125, "y": 0.5, "b": 0.8216588235294117, "r": 215, "g": 208, "bl": 203}, {"x": 0.425, "y": 0.5, "b": 0.8541607843137256, "r": 222, "g": 217, "bl": 211}, {"x": 0.4375, "y": 0.5, "b": 0.8072549019607842, "r": 214, "g": 204, "bl": 194}, {"x": 0.45, "y": 0.5, "b": 0.8171215686274509, "r": 215, "g": 207, "bl": 198}, {"x": 0.4625, "y": 0.5, "b": 0.8024392156862744, "r": 213, "g": 203, "bl": 191}, {"x": 0.475, "y": 0.5, "b": 0.8325294117647059, "r": 218, "g": 211, "bl": 204}, {"x": 0.4875, "y": 0.5, "b": 0.8088745098039215, "r": 215, "g": 204, "bl": 195}, {"x": 0.5, "y": 0.5, "b": 0.7778901960784314, "r": 210, "g": 196, "bl": 180}, {"x": 0.5125, "y": 0.5, "b": 0.8100039215686274, "r": 214, "g": 205, "bl": 195}, {"x": 0.525, "y": 0.5, "b": 0.7487529411764705, "r": 202, "g": 188, "bl": 177}, {"x": 0.5375, "y": 0.5, "b": 0.7763294117647058, "r": 206, "g": 196, "bl": 187}, {"x": 0.55, "y": 0.5, "b": 0.805356862745098, "r": 212, "g": 204, "bl": 195}, {"x": 0.5625, "y": 0.5, "b": 0.7385647058823528, "r": 198, "g": 186, "bl": 175}, {"x": 0.575, "y": 0.5, "b": 0.5884, "r": 166, "g": 146, "bl": 129}, {"x": 0.7875, "y": 0.5, "b": 0.5568549019607842, "r": 176, "g": 134, "bl": 94}, {"x": 0.8, "y": 0.5, "b": 0.5713686274509804, "r": 179, "g": 138, "bl": 98}, {"x": 0.1625, "y": 0.5125, "b": 0.6089019607843137, "r": 171, "g": 151, "bl": 136}, {"x": 0.175, "y": 0.5125, "b": 0.617556862745098, "r": 178, "g": 151, "bl": 137}, {"x": 0.1875, "y": 0.5125, "b": 0.5753137254901961, "r": 167, "g": 140, "bl": 128}, {"x": 0.2125, "y": 0.5125, "b": 0.5680705882352941, "r": 169, "g": 137, "bl": 122}, {"x": 0.225, "y": 0.5125, "b": 0.6149607843137255, "r": 182, "g": 149, "bl": 131}, {"x": 0.2375, "y": 0.5125, "b": 0.5747843137254902, "r": 172, "g": 138, "bl": 124}, {"x": 0.25, "y": 0.5125, "b": 0.5791098039215686, "r": 171, "g": 140, "bl": 126}, {"x": 0.2625, "y": 0.5125, "b": 0.6875019607843137, "r": 190, "g": 171, "bl": 159}, {"x": 0.275, "y": 0.5125, "b": 0.6853254901960784, "r": 187, "g": 171, "bl": 162}, {"x": 0.2875, "y": 0.5125, "b": 0.745835294117647, "r": 203, "g": 187, "bl": 173}, {"x": 0.3, "y": 0.5125, "b": 0.7888196078431371, "r": 210, "g": 199, "bl": 189}, {"x": 0.3125, "y": 0.5125, "b": 0.8412666666666665, "r": 220, "g": 213, "bl": 208}, {"x": 0.325, "y": 0.5125, "b": 0.8562274509803921, "r": 223, "g": 217, "bl": 213}, {"x": 0.3375, "y": 0.5125, "b": 0.878305882352941, "r": 227, "g": 223, "bl": 221}, {"x": 0.35, "y": 0.5125, "b": 0.8491098039215687, "r": 222, "g": 215, "bl": 210}, {"x": 0.3625, "y": 0.5125, "b": 0.7741372549019607, "r": 208, "g": 195, "bl": 182}, {"x": 0.375, "y": 0.5125, "b": 0.8569529411764706, "r": 224, "g": 217, "bl": 212}, {"x": 0.3875, "y": 0.5125, "b": 0.8077019607843136, "r": 214, "g": 204, "bl": 195}, {"x": 0.4, "y": 0.5125, "b": 0.8107294117647058, "r": 215, "g": 205, "bl": 194}, {"x": 0.4125, "y": 0.5125, "b": 0.7873686274509804, "r": 208, "g": 199, "bl": 191}, {"x": 0.425, "y": 0.5125, "b": 0.8412666666666665, "r": 220, "g": 213, "bl": 208}, {"x": 0.4375, "y": 0.5125, "b": 0.8024392156862744, "r": 213, "g": 203, "bl": 191}, {"x": 0.45, "y": 0.5125, "b": 0.8072549019607842, "r": 214, "g": 204, "bl": 194}, {"x": 0.4625, "y": 0.5125, "b": 0.7922941176470587, "r": 211, "g": 200, "bl": 189}, {"x": 0.475, "y": 0.5125, "b": 0.8281607843137254, "r": 217, "g": 210, "bl": 202}, {"x": 0.4875, "y": 0.5125, "b": 0.8033333333333333, "r": 213, "g": 203, "bl": 193}, {"x": 0.5, "y": 0.5125, "b": 0.7739686274509804, "r": 209, "g": 195, "bl": 179}, {"x": 0.5125, "y": 0.5125, "b": 0.8107294117647058, "r": 215, "g": 205, "bl": 194}, {"x": 0.525, "y": 0.5125, "b": 0.7223058823529412, "r": 197, "g": 181, "bl": 167}, {"x": 0.5375, "y": 0.5125, "b": 0.7549764705882352, "r": 203, "g": 190, "bl": 178}, {"x": 0.55, "y": 0.5125, "b": 0.790843137254902, "r": 209, "g": 200, "bl": 191}, {"x": 0.5625, "y": 0.5125, "b": 0.7687647058823529, "r": 205, "g": 194, "bl": 183}, {"x": 0.575, "y": 0.5125, "b": 0.6489686274509805, "r": 179, "g": 162, "bl": 148}, {"x": 0.15, "y": 0.525, "b": 0.5891686274509804, "r": 169, "g": 145, "bl": 128}, {"x": 0.2125, "y": 0.525, "b": 0.5496784313725489, "r": 167, "g": 131, "bl": 117}, {"x": 0.225, "y": 0.525, "b": 0.6059882352941176, "r": 181, "g": 146, "bl": 129}, {"x": 0.2375, "y": 0.525, "b": 0.5942666666666667, "r": 180, "g": 142, "bl": 126}, {"x": 0.25, "y": 0.525, "b": 0.5586509803921568, "r": 168, "g": 134, "bl": 119}, {"x": 0.2625, "y": 0.525, "b": 0.6346941176470589, "r": 184, "g": 155, "bl": 139}, {"x": 0.275, "y": 0.525, "b": 0.6353490196078432, "r": 176, "g": 158, "bl": 146}, {"x": 0.2875, "y": 0.525, "b": 0.711435294117647, "r": 194, "g": 178, "bl": 166}, {"x": 0.3, "y": 0.525, "b": 0.738270588235294, "r": 202, "g": 185, "bl": 169}, {"x": 0.3125, "y": 0.525, "b": 0.8182941176470588, "r": 216, "g": 207, "bl": 198}, {"x": 0.325, "y": 0.525, "b": 0.8219372549019608, "r": 216, "g": 208, "bl": 201}, {"x": 0.3375, "y": 0.525, "b": 0.8530313725490196, "r": 223, "g": 216, "bl": 211}, {"x": 0.35, "y": 0.525, "b": 0.8523058823529411, "r": 222, "g": 216, "bl": 212}, {"x": 0.3625, "y": 0.525, "b": 0.7658470588235294, "r": 206, "g": 193, "bl": 179}, {"x": 0.375, "y": 0.525, "b": 0.8265843137254901, "r": 218, "g": 209, "bl": 201}, {"x": 0.3875, "y": 0.525, "b": 0.8060823529411765, "r": 213, "g": 204, "bl": 194}, {"x": 0.4, "y": 0.525, "b": 0.8040588235294117, "r": 214, "g": 203, "bl": 192}, {"x": 0.4125, "y": 0.525, "b": 0.7726862745098038, "r": 206, "g": 195, "bl": 184}, {"x": 0.425, "y": 0.525, "b": 0.8000274509803922, "r": 211, "g": 202, "bl": 196}, {"x": 0.4375, "y": 0.525, "b": 0.7950431372549019, "r": 211, "g": 201, "bl": 190}, {"x": 0.45, "y": 0.525, "b": 0.7909529411764705, "r": 211, "g": 200, "bl": 186}, {"x": 0.4625, "y": 0.525, "b": 0.7828313725490197, "r": 208, "g": 198, "bl": 186}, {"x": 0.475, "y": 0.525, "b": 0.8148196078431372, "r": 215, "g": 206, "bl": 198}, {"x": 0.4875, "y": 0.525, "b": 0.7879254901960784, "r": 210, "g": 199, "bl": 187}, {"x": 0.5, "y": 0.525, "b": 0.7730745098039216, "r": 209, "g": 195, "bl": 177}, {"x": 0.5125, "y": 0.525, "b": 0.8068078431372548, "r": 214, "g": 204, "bl": 193}, {"x": 0.525, "y": 0.525, "b": 0.7253333333333334, "r": 198, "g": 182, "bl": 166}, {"x": 0.5375, "y": 0.525, "b": 0.735756862745098, "r": 201, "g": 185, "bl": 166}, {"x": 0.55, "y": 0.525, "b": 0.7848549019607842, "r": 207, "g": 199, "bl": 188}, {"x": 0.5625, "y": 0.525, "b": 0.7848549019607842, "r": 207, "g": 199, "bl": 188}, {"x": 0.575, "y": 0.525, "b": 0.6763764705882352, "r": 184, "g": 170, "bl": 155}, {"x": 0.2375, "y": 0.5375, "b": 0.5868274509803921, "r": 176, "g": 141, "bl": 125}, {"x": 0.25, "y": 0.5375, "b": 0.5891294117647059, "r": 176, "g": 142, "bl": 125}, {"x": 0.2625, "y": 0.5375, "b": 0.5535568627450981, "r": 166, "g": 133, "bl": 118}, {"x": 0.275, "y": 0.5375, "b": 0.6228862745098038, "r": 179, "g": 153, "bl": 136}, {"x": 0.2875, "y": 0.5375, "b": 0.6341764705882353, "r": 175, "g": 158, "bl": 146}, {"x": 0.3, "y": 0.5375, "b": 0.7083490196078431, "r": 196, "g": 177, "bl": 159}, {"x": 0.3125, "y": 0.5375, "b": 0.7626509803921568, "r": 206, "g": 192, "bl": 177}, {"x": 0.325, "y": 0.5375, "b": 0.8100039215686274, "r": 214, "g": 205, "bl": 195}, {"x": 0.3375, "y": 0.5375, "b": 0.8226627450980392, "r": 217, "g": 208, "bl": 200}, {"x": 0.35, "y": 0.5375, "b": 0.8297803921568627, "r": 218, "g": 210, "bl": 203}, {"x": 0.3625, "y": 0.5375, "b": 0.7844509803921569, "r": 209, "g": 198, "bl": 187}, {"x": 0.375, "y": 0.5375, "b": 0.7776117647058823, "r": 209, "g": 196, "bl": 182}, {"x": 0.3875, "y": 0.5375, "b": 0.8107294117647058, "r": 215, "g": 205, "bl": 194}, {"x": 0.4, "y": 0.5375, "b": 0.7842823529411764, "r": 210, "g": 198, "bl": 184}, {"x": 0.4125, "y": 0.5375, "b": 0.7725176470588236, "r": 207, "g": 195, "bl": 181}, {"x": 0.425, "y": 0.5375, "b": 0.746407843137255, "r": 200, "g": 188, "bl": 177}, {"x": 0.4375, "y": 0.5375, "b": 0.7922941176470587, "r": 211, "g": 200, "bl": 189}, {"x": 0.45, "y": 0.5375, "b": 0.7750980392156863, "r": 208, "g": 196, "bl": 179}, {"x": 0.4625, "y": 0.5375, "b": 0.7708980392156862, "r": 206, "g": 195, "bl": 180}, {"x": 0.475, "y": 0.5375, "b": 0.7989647058823529, "r": 212, "g": 202, "bl": 191}, {"x": 0.4875, "y": 0.5375, "b": 0.7764392156862745, "r": 208, "g": 196, "bl": 182}, {"x": 0.5, "y": 0.5375, "b": 0.7659568627450981, "r": 208, "g": 193, "bl": 174}, {"x": 0.5125, "y": 0.5375, "b": 0.7948745098039216, "r": 212, "g": 201, "bl": 187}, {"x": 0.525, "y": 0.5375, "b": 0.720964705882353, "r": 197, "g": 181, "bl": 164}, {"x": 0.5375, "y": 0.5375, "b": 0.710035294117647, "r": 197, "g": 178, "bl": 155}, {"x": 0.55, "y": 0.5375, "b": 0.7801921568627451, "r": 210, "g": 197, "bl": 180}, {"x": 0.5625, "y": 0.5375, "b": 0.8068078431372548, "r": 214, "g": 204, "bl": 193}, {"x": 0.575, "y": 0.5375, "b": 0.7197921568627451, "r": 196, "g": 181, "bl": 164}, {"x": 0.2375, "y": 0.55, "b": 0.5628941176470589, "r": 172, "g": 134, "bl": 118}, {"x": 0.25, "y": 0.55, "b": 0.5984235294117647, "r": 180, "g": 144, "bl": 125}, {"x": 0.2625, "y": 0.55, "b": 0.5750627450980393, "r": 173, "g": 138, "bl": 122}, {"x": 0.275, "y": 0.55, "b": 0.5745725490196079, "r": 171, "g": 139, "bl": 121}, {"x": 0.2875, "y": 0.55, "b": 0.6158941176470587, "r": 175, "g": 152, "bl": 136}, {"x": 0.3, "y": 0.55, "b": 0.6614588235294118, "r": 183, "g": 165, "bl": 150}, {"x": 0.3125, "y": 0.55, "b": 0.7093529411764705, "r": 198, "g": 177, "bl": 156}, {"x": 0.325, "y": 0.55, "b": 0.7842823529411764, "r": 210, "g": 198, "bl": 184}, {"x": 0.3375, "y": 0.55, "b": 0.7847294117647059, "r": 210, "g": 198, "bl": 185}, {"x": 0.35, "y": 0.55, "b": 0.8072549019607842, "r": 214, "g": 204, "bl": 194}, {"x": 0.3625, "y": 0.55, "b": 0.7888196078431371, "r": 210, "g": 199, "bl": 189}, {"x": 0.375, "y": 0.55, "b": 0.7366509803921569, "r": 201, "g": 185, "bl": 168}, {"x": 0.3875, "y": 0.55, "b": 0.7987960784313725, "r": 213, "g": 202, "bl": 188}, {"x": 0.4, "y": 0.55, "b": 0.7629294117647057, "r": 207, "g": 192, "bl": 175}, {"x": 0.4125, "y": 0.55, "b": 0.7732431372549019, "r": 208, "g": 195, "bl": 180}, {"x": 0.425, "y": 0.55, "b": 0.7100941176470588, "r": 194, "g": 178, "bl": 163}, {"x": 0.4375, "y": 0.55, "b": 0.7654, "r": 206, "g": 193, "bl": 178}, {"x": 0.45, "y": 0.55, "b": 0.7608627450980393, "r": 206, "g": 192, "bl": 173}, {"x": 0.4625, "y": 0.55, "b": 0.7601372549019608, "r": 205, "g": 192, "bl": 174}, {"x": 0.475, "y": 0.55, "b": 0.7842823529411764, "r": 210, "g": 198, "bl": 184}, {"x": 0.4875, "y": 0.55, "b": 0.7654, "r": 206, "g": 193, "bl": 178}, {"x": 0.5, "y": 0.55, "b": 0.7574980392156861, "r": 207, "g": 191, "bl": 168}, {"x": 0.5125, "y": 0.55, "b": 0.7801921568627451, "r": 210, "g": 197, "bl": 180}, {"x": 0.525, "y": 0.55, "b": 0.721243137254902, "r": 198, "g": 181, "bl": 162}, {"x": 0.5375, "y": 0.55, "b": 0.7137882352941176, "r": 199, "g": 179, "bl": 153}, {"x": 0.55, "y": 0.55, "b": 0.7542588235294116, "r": 205, "g": 191, "bl": 166}, {"x": 0.5625, "y": 0.55, "b": 0.7385058823529411, "r": 201, "g": 186, "bl": 167}, {"x": 0.575, "y": 0.55, "b": 0.7501019607843138, "r": 205, "g": 189, "bl": 167}, {"x": 0.5875, "y": 0.55, "b": 0.6741411764705881, "r": 184, "g": 170, "bl": 150}, {"x": 0.925, "y": 0.55, "b": 0.5751764705882353, "r": 169, "g": 143, "bl": 107}, {"x": 0.25, "y": 0.5625, "b": 0.5776862745098039, "r": 176, "g": 138, "bl": 120}, {"x": 0.2625, "y": 0.5625, "b": 0.6097411764705882, "r": 183, "g": 147, "bl": 127}, {"x": 0.275, "y": 0.5625, "b": 0.5531098039215686, "r": 166, "g": 133, "bl": 117}, {"x": 0.2875, "y": 0.5625, "b": 0.5941372549019608, "r": 174, "g": 145, "bl": 126}, {"x": 0.3, "y": 0.5625, "b": 0.6257176470588235, "r": 174, "g": 156, "bl": 140}, {"x": 0.3125, "y": 0.5625, "b": 0.6830745098039215, "r": 192, "g": 170, "bl": 149}, {"x": 0.325, "y": 0.5625, "b": 0.724313725490196, "r": 201, "g": 181, "bl": 161}, {"x": 0.3375, "y": 0.5625, "b": 0.7590078431372549, "r": 206, "g": 191, "bl": 174}, {"x": 0.35, "y": 0.5625, "b": 0.7736901960784314, "r": 208, "g": 195, "bl": 181}, {"x": 0.3625, "y": 0.5625, "b": 0.7670196078431373, "r": 207, "g": 193, "bl": 179}, {"x": 0.375, "y": 0.5625, "b": 0.7260588235294116, "r": 199, "g": 182, "bl": 165}, {"x": 0.3875, "y": 0.5625, "b": 0.7523372549019608, "r": 205, "g": 189, "bl": 172}, {"x": 0.4, "y": 0.5625, "b": 0.7588392156862744, "r": 207, "g": 191, "bl": 171}, {"x": 0.4125, "y": 0.5625, "b": 0.7518901960784313, "r": 205, "g": 189, "bl": 171}, {"x": 0.425, "y": 0.5625, "b": 0.7094784313725491, "r": 195, "g": 178, "bl": 159}, {"x": 0.4375, "y": 0.5625, "b": 0.731556862745098, "r": 199, "g": 184, "bl": 167}, {"x": 0.45, "y": 0.5625, "b": 0.7528509803921568, "r": 205, "g": 190, "bl": 168}, {"x": 0.4625, "y": 0.5625, "b": 0.750549019607843, "r": 205, "g": 189, "bl": 168}, {"x": 0.475, "y": 0.5625, "b": 0.7582823529411763, "r": 205, "g": 191, "bl": 175}, {"x": 0.4875, "y": 0.5625, "b": 0.7433215686274509, "r": 202, "g": 187, "bl": 170}, {"x": 0.5, "y": 0.5625, "b": 0.7409607843137254, "r": 205, "g": 186, "bl": 162}, {"x": 0.5125, "y": 0.5625, "b": 0.7615882352941176, "r": 207, "g": 192, "bl": 172}, {"x": 0.525, "y": 0.5625, "b": 0.7261686274509804, "r": 201, "g": 182, "bl": 160}, {"x": 0.5375, "y": 0.5625, "b": 0.7336745098039216, "r": 205, "g": 184, "bl": 156}, {"x": 0.55, "y": 0.5625, "b": 0.7791294117647058, "r": 211, "g": 197, "bl": 175}, {"x": 0.5625, "y": 0.5625, "b": 0.6728, "r": 184, "g": 170, "bl": 147}, {"x": 0.575, "y": 0.5625, "b": 0.6670235294117648, "r": 183, "g": 168, "bl": 147}, {"x": 0.5875, "y": 0.5625, "b": 0.6804078431372549, "r": 187, "g": 171, "bl": 151}, {"x": 0.6, "y": 0.5625, "b": 0.6854588235294118, "r": 187, "g": 173, "bl": 152}, {"x": 0.6125, "y": 0.5625, "b": 0.7271450980392157, "r": 196, "g": 184, "bl": 165}, {"x": 0.625, "y": 0.5625, "b": 0.651235294117647, "r": 180, "g": 165, "bl": 135}, {"x": 0.925, "y": 0.5625, "b": 0.5537960784313725, "r": 159, "g": 139, "bl": 106}, {"x": 0.2625, "y": 0.575, "b": 0.5827372549019607, "r": 176, "g": 140, "bl": 121}, {"x": 0.275, "y": 0.575, "b": 0.5995529411764706, "r": 179, "g": 145, "bl": 125}, {"x": 0.3, "y": 0.575, "b": 0.6097803921568626, "r": 176, "g": 150, "bl": 130}, {"x": 0.3125, "y": 0.575, "b": 0.6421294117647057, "r": 179, "g": 160, "bl": 143}, {"x": 0.325, "y": 0.575, "b": 0.6820117647058823, "r": 193, "g": 170, "bl": 144}, {"x": 0.3375, "y": 0.575, "b": 0.7367607843137255, "r": 203, "g": 185, "bl": 163}, {"x": 0.35, "y": 0.575, "b": 0.7346274509803922, "r": 202, "g": 184, "bl": 166}, {"x": 0.3625, "y": 0.575, "b": 0.7461137254901961, "r": 204, "g": 187, "bl": 171}, {"x": 0.375, "y": 0.575, "b": 0.7138470588235294, "r": 196, "g": 179, "bl": 161}, {"x": 0.3875, "y": 0.575, "b": 0.6894666666666668, "r": 192, "g": 172, "bl": 153}, {"x": 0.4, "y": 0.575, "b": 0.7509960784313725, "r": 205, "g": 189, "bl": 169}, {"x": 0.4125, "y": 0.575, "b": 0.7171529411764705, "r": 198, "g": 180, "bl": 158}, {"x": 0.425, "y": 0.575, "b": 0.6975450980392157, "r": 193, "g": 175, "bl": 153}, {"x": 0.4375, "y": 0.575, "b": 0.679556862745098, "r": 189, "g": 170, "bl": 149}, {"x": 0.45, "y": 0.575, "b": 0.7280235294117646, "r": 201, "g": 183, "bl": 159}, {"x": 0.4625, "y": 0.575, "b": 0.7390627450980392, "r": 203, "g": 186, "bl": 163}, {"x": 0.475, "y": 0.575, "b": 0.7281921568627451, "r": 200, "g": 183, "bl": 162}, {"x": 0.4875, "y": 0.575, "b": 0.7067294117647059, "r": 195, "g": 177, "bl": 158}, {"x": 0.5, "y": 0.575, "b": 0.7184352941176471, "r": 201, "g": 180, "bl": 153}, {"x": 0.5125, "y": 0.575, "b": 0.7434313725490196, "r": 204, "g": 187, "bl": 165}, {"x": 0.525, "y": 0.575, "b": 0.710035294117647, "r": 197, "g": 178, "bl": 155}, {"x": 0.5375, "y": 0.575, "b": 0.7332274509803922, "r": 205, "g": 184, "bl": 155}, {"x": 0.55, "y": 0.575, "b": 0.7381686274509804, "r": 203, "g": 186, "bl": 161}, {"x": 0.5625, "y": 0.575, "b": 0.6673176470588236, "r": 179, "g": 169, "bl": 153}, {"x": 0.575, "y": 0.575, "b": 0.6802549019607842, "r": 183, "g": 172, "bl": 156}, {"x": 0.5875, "y": 0.575, "b": 0.6627137254901961, "r": 179, "g": 167, "bl": 153}, {"x": 0.6, "y": 0.575, "b": 0.6050627450980393, "r": 165, "g": 152, "bl": 138}, {"x": 0.6125, "y": 0.575, "b": 0.7122431372549021, "r": 190, "g": 180, "bl": 168}, {"x": 0.625, "y": 0.575, "b": 0.7918039215686276, "r": 209, "g": 201, "bl": 188}, {"x": 0.6375, "y": 0.575, "b": 0.7682156862745098, "r": 206, "g": 195, "bl": 174}, {"x": 0.9125, "y": 0.575, "b": 0.5545647058823528, "r": 162, "g": 138, "bl": 105}, {"x": 0.2375, "y": 0.5875, "b": 0.612, "r": 181, "g": 149, "bl": 127}, {"x": 0.275, "y": 0.5875, "b": 0.5986588235294117, "r": 179, "g": 145, "bl": 123}, {"x": 0.2875, "y": 0.5875, "b": 0.5861686274509804, "r": 175, "g": 142, "bl": 121}, {"x": 0.3, "y": 0.5875, "b": 0.5642156862745098, "r": 168, "g": 137, "bl": 116}, {"x": 0.3125, "y": 0.5875, "b": 0.6173019607843138, "r": 175, "g": 153, "bl": 134}, {"x": 0.325, "y": 0.5875, "b": 0.6547294117647059, "r": 185, "g": 163, "bl": 140}, {"x": 0.3375, "y": 0.5875, "b": 0.6859333333333333, "r": 194, "g": 171, "bl": 145}];
+
+function resize(){
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+// Map normalised spot coords to screen, image covers full background
+function spotToScreen(spot){
+  // image is cover-fitted: scale to fill, centered
+  const imgAspect = 1117/1104;
+  const screenAspect = W/H;
+  let sx, sy, sw, sh;
+  if(screenAspect > imgAspect){
+    sw = W; sh = W/imgAspect;
+    sx = 0; sy = (H-sh)/2;
+  } else {
+    sh = H; sw = H*imgAspect;
+    sx = (W-sw)/2; sy = 0;
+  }
+  return {
+    x: sx + spot.x * sw,
+    y: sy + spot.y * sh
+  };
+}
+
+class Particle {
+  constructor(){
+    this.reset();
+  }
+  reset(){
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4;
+    this.life = Math.random();
+    this.maxLife = 0.6 + Math.random() * 0.4;
+    this.size = 0.8 + Math.random() * 2.2;
+    this.speed = 0.2 + Math.random() * 0.6;
+    // warm amber/orange palette with occasional cool accent
+    const r = Math.random();
+    if(r < 0.6){
+      // amber/orange — accent color family
+      this.r = 200 + Math.random()*55;
+      this.g = 120 + Math.random()*80;
+      this.b = 10 + Math.random()*30;
+    } else if(r < 0.85){
+      // warm white/cream
+      this.r = 220 + Math.random()*35;
+      this.g = 210 + Math.random()*35;
+      this.b = 180 + Math.random()*40;
+    } else {
+      // deep ember red
+      this.r = 180 + Math.random()*40;
+      this.g = 60 + Math.random()*40;
+      this.b = 10 + Math.random()*20;
+    }
+  }
+  update(){
+    // curl noise-like movement
+    const t = Date.now() * 0.0003;
+    const nx = this.x * 0.003 + t;
+    const ny = this.y * 0.003 + t * 0.7;
+    const angle = Math.sin(nx) * Math.cos(ny) * Math.PI * 2;
+    this.vx += Math.cos(angle) * 0.012;
+    this.vy += Math.sin(angle) * 0.012;
+    // mouse repulsion
+    const dx = this.x - mouse.x;
+    const dy = this.y - mouse.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if(dist < 120){
+      const force = (120 - dist) / 120;
+      this.vx += (dx/dist) * force * 0.8;
+      this.vy += (dy/dist) * force * 0.8;
+    }
+    // damping
+    this.vx *= 0.97;
+    this.vy *= 0.97;
+    this.x += this.vx * this.speed;
+    this.y += this.vy * this.speed;
+    this.life += 0.003;
+    if(this.life > this.maxLife || this.x < -10 || this.x > W+10 || this.y < -10 || this.y > H+10){
+      this.reset();
+      this.life = 0;
+    }
+  }
+  draw(){
+    const progress = this.life / this.maxLife;
+    const alpha = progress < 0.15 ? progress/0.15 : progress > 0.8 ? (1-progress)/0.2 : 1;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(${this.r},${this.g},${this.b},${alpha * 0.55})`;
+    ctx.fill();
+  }
+}
+
+// Draw connections between nearby particles
+function drawConnections(){
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx+dy*dy);
+      if(d < 80){
+        const alpha = (1 - d/80) * 0.08;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(245,166,35,${alpha})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function init(){
+  resize();
+  particles = Array.from({length: 180}, () => new Particle());
+}
+
+function loop(){
+  ctx.clearRect(0, 0, W, H);
+  drawConnections();
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(loop);
+}
+
+window.addEventListener('resize', resize);
+window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+init();
+loop();
+
+</script>
+</body>
+</html>

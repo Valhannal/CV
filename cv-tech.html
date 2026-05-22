@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanna Kachurouskaya — Pipeline Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0a0a0c;
+  --bg2:#111114;
+  --accent:#ff3c1a;
+  --text:#e8e6e0;
+  --muted:#949494;
+  --dim:#333;
+  --border:#1e1e22;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-weight:300;overflow-x:hidden;}
+
+canvas#grid{position:fixed;top:0;left:0;width:100%;height:100%;opacity:0.53;pointer-events:none;z-index:0;}
+
+.wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:64px 48px 100px;}
+
+/* HEADER */
+.header{padding-bottom:40px;margin-bottom:56px;border-bottom:1px solid var(--border);animation:fadeUp .8s ease both;}
+.name{font-family:'Space Mono',monospace;font-size:42px;font-weight:700;letter-spacing:-2px;color:#fff;line-height:1;margin-bottom:10px;}
+.name em{color:var(--accent);font-style:normal;}
+.subtitle{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:24px;}
+.contacts{display:flex;flex-wrap:wrap;gap:24px;font-size:14px;color:var(--muted);}
+.contacts a{color:var(--accent);text-decoration:none;transition:opacity .2s;}
+.contacts a:hover{opacity:.6;}
+
+/* SECTION */
+.section{margin-bottom:52px;animation:fadeUp .8s ease both;}
+.s1{animation-delay:.1s}.s2{animation-delay:.2s}.s3{animation-delay:.3s}.s4{animation-delay:.4s}.s5{animation-delay:.5s}
+
+.sec-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:14px;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ABOUT */
+.about-text{font-size:19px;line-height:1.95;color:#d0d0d0;max-width:700px;}
+.about-text p{margin-bottom:16px;}
+.about-text p:last-child{margin-bottom:0;}
+
+/* JOB */
+.job{margin-bottom:32px;padding:20px 20px 20px 24px;border-left:2px solid var(--border);transition:border-color .3s;cursor:default;position:relative;}
+.job:hover{border-left-color:var(--accent);}
+.job-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:4px;margin-bottom:2px;}
+.job-title{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#fff;}
+.job-date{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);white-space:nowrap;}
+.job-company{font-size:13px;color:var(--accent);margin-bottom:14px;letter-spacing:.5px;}
+.job-body{font-size:16.5px;line-height:1.9;color:#d8d8d8;display:none;}
+.job-body.open{display:block;animation:fadeUp .3s ease both;}
+.job-body p{margin-bottom:10px;}
+.job-body p:last-child{margin-bottom:0;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+.tag{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;padding:4px 9px;border:1px solid var(--dim);color:var(--muted);border-radius:2px;transition:all .2s;}
+.tag:hover{border-color:var(--accent);color:var(--accent);}
+.toggle{margin-top:12px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);cursor:pointer;transition:color .2s;user-select:none;display:inline-block;}
+.toggle:hover{color:var(--accent);}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.sg-title{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.sg-body{font-size:15px;line-height:2.1;color:#c0c0c0;}
+.sg-body strong{color:#ccc;font-weight:400;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:600px){
+  .wrap{padding:32px 20px 60px;}
+  .name{font-size:28px;}
+  .skills-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<canvas id="grid"></canvas>
+<div class="wrap">
+
+  <div class="header">
+    <div class="name">Hanna <em>Kachurouskaya</em></div>
+    <div class="subtitle">Pipeline Developer &nbsp;·&nbsp; Technical Artist &nbsp;·&nbsp; Senior VFX Artist</div>
+    <div class="contacts">
+      <span>Kraków, Poland</span>
+      <a href="mailto:valynets.h@gmail.com">valynets.h@gmail.com</a>
+      <span>+48 797 314 747</span>
+      <a href="https://www.linkedin.com/in/kachurouskaya-hanna-096aab114/" target="_blank">LinkedIn</a>
+      <a href="https://www.behance.net/ValHanna" target="_blank">Behance</a>
+    </div>
+  </div>
+
+  <div class="section s1">
+    <div class="sec-label">Profile</div>
+    <div class="about-text">
+      <p>I bring a rare combination: technical depth and the ability to see the bigger picture. I ask the inconvenient questions, spot the gaps others overlook, and turn that into actionable structure. If you're scaling and want someone who actively makes the system better — not just runs it — that's where I fit.</p>
+      <p>My background is in production pipeline engineering — building integrations between systems, automating workflows, and connecting tools through REST APIs, Python, and custom tooling. The industry is VFX, but the problems are universal: unreliable data flows, manual overhead, systems that don't talk to each other.</p>
+      <p>I'm looking to apply this in a broader context — tech, SaaS, logistics, or any domain where connecting systems and scaling workflows creates real impact.</p>
+    </div>
+  </div>
+
+  <div class="section s2">
+    <div class="sec-label">Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Pipeline Developer</div>
+        <div class="job-date">Mar 2024 — Present</div>
+      </div>
+      <div class="job-company">Millarc CGI · Kraków</div>
+      <div class="job-body open" id="j1">
+        <p>Took on pipeline development organically — driven by a systems-thinking mindset and a drive to eliminate manual overhead and bring structural clarity to production workflows. Developed and maintained internal tooling used across a team of 20+, with all work documented and version-controlled via GitHub.</p>
+        <p>Built and maintained a core integration suite connecting Houdini / 3ds Max + Deadline + Flow Production (ShotGrid) via REST APIs and webhooks — handling render farm orchestration, asset delivery, and project tracking. Developed an automated render-to-preview pipeline eliminating manual render processing entirely: enforcing file naming conventions, auto-generating previews from Deadline output, and pushing them to both the project database and Flow Production.</p>
+        <p>Deployed a self-hosted server via Docker to enable bidirectional Slack API communication — allowing external triggers and notifications beyond the internal network. Developed a standalone project monitoring and reporting application integrating Timetastic, Toggl, and Slack APIs — providing real-time visibility into team time tracking, project progress, and KPI dashboards with automated report generation for studio management.</p>
+        <p>Conducted ongoing R&D into emerging pipeline tools and approaches, driving adoption of new workflows across the team through technical enablement and change management. As part of this, gained hands-on experience with Ayon as a pipeline management platform.</p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">Docker</span><span class="tag">Houdini</span><span class="tag">3ds Max</span><span class="tag">Deadline</span><span class="tag">Flow Production</span><span class="tag">Ayon</span><span class="tag">Slack API</span><span class="tag">Toggl</span><span class="tag">Git / GitHub</span><span class="tag">JSON/XML</span><span class="tag">Postman</span><span class="tag">Cursor/Codex</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j1',this)">— collapse</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Senior VFX Artist</div>
+        <div class="job-date">Mar 2022 — Present</div>
+      </div>
+      <div class="job-company">Millarc CGI · Kraków</div>
+      <div class="job-body" id="j2">
+        <p>Created high-end visual effects and motion design content for commercial visuals, primarily for major Chinese tech brands including Huawei, OnePlus, Xiaomi, OPPO, Vivo and others. Delivered 50+ projects across advertising, product visualization, and motion design.</p>
+        <p>Specialized in procedural effects and simulations — volumes, particles, Vellum, RBD, FLIP, VDB, KineFX, and terrain generation — as well as custom procedural setups built with VEX and Python. Handled the full production pipeline from effect development and lookdev through rendering, compositing, and final delivery. Worked with USD and Solaris for scene assembly, Deadline for render distribution. Regularly developed custom tools and scripts to streamline technical workflows.</p>
+        <p>Actively integrated AI into the production workflow — primarily at the concept stage, and increasingly into final production. Led concept development and creative direction on effects. Mentored junior artists and contributed to team adoption of new tools and workflows.</p>
+        <div class="tags">
+          <span class="tag">Houdini</span><span class="tag">VEX</span><span class="tag">Python</span><span class="tag">Nuke</span><span class="tag">Fusion</span><span class="tag">USD/Solaris</span><span class="tag">Redshift</span><span class="tag">Deadline</span><span class="tag">Gaea</span><span class="tag">ComfyUI</span><span class="tag">Midjourney</span><span class="tag">Kling</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j2',this)">+ expand</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Digital Artist</div>
+        <div class="job-date">Mar 2021 — Mar 2022</div>
+      </div>
+      <div class="job-company">The Digital Bunch · Warsaw</div>
+      <div class="job-body" id="j3">
+        <p>Led and delivered high-quality architectural and interior visualization projects while mentoring junior team members and overseeing output quality. Expanded into motion design — developing animated project presentations and visual effects sequences. Handled the full motion pipeline from 3D simulation and rendering to final compositing.</p>
+        <div class="tags">
+          <span class="tag">3ds Max</span><span class="tag">V-Ray</span><span class="tag">Corona</span><span class="tag">Houdini</span><span class="tag">Nuke</span><span class="tag">Photoshop</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j3',this)">+ expand</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">3D Graphic Artist</div>
+        <div class="job-date">Jan 2018 — Sep 2019</div>
+      </div>
+      <div class="job-company">VERO Digital</div>
+      <div class="job-body" id="j4">
+        <p>Created high-quality architectural and interior visualizations for residential and commercial projects. Built and refined detailed 3D models with a strong focus on materials, textures, lighting, and atmosphere. Worked with 360° renders deployed in VR environments for immersive client presentations.</p>
+        <div class="tags">
+          <span class="tag">3ds Max</span><span class="tag">V-Ray</span><span class="tag">Corona</span><span class="tag">Revit</span><span class="tag">SpeedTree</span><span class="tag">Unreal Engine</span><span class="tag">Photoshop</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j4',this)">+ expand</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">3D Artist — Freelance</div>
+        <div class="job-date">Oct 2016 — Jan 2018</div>
+      </div>
+      <div class="job-company">Independent</div>
+      <div class="job-body" id="j5">
+        <p>Created high-quality architectural and interior visualizations. Handled full visualization pipeline from working with architectural drawings and references through to rendering and post-production.</p>
+        <div class="tags">
+          <span class="tag">3ds Max</span><span class="tag">V-Ray</span><span class="tag">Corona</span><span class="tag">Photoshop</span><span class="tag">Revit</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j5',this)">+ expand</div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Junior Structural Design Engineer</div>
+        <div class="job-date">2013 — 2016</div>
+      </div>
+      <div class="job-company">BRIG · Belarus</div>
+      <div class="job-body" id="j6">
+        <p>Worked as part of a structural engineering team, conducting on-site inspections of 50+ building structures across various types of facilities — including visual defect assessment, measurements, and condition evaluation. Prepared technical documentation using AutoCAD and Revit, and supported senior engineers with structural calculations per applicable codes and standards (SNiP/SP). Independently introduced Revit (BIM) into the team's workflow — self-taught — becoming the first in the department to apply BIM methodology.</p>
+        <div class="tags">
+          <span class="tag">AutoCAD</span><span class="tag">Revit</span><span class="tag">BIM</span><span class="tag">SNiP/SP</span>
+        </div>
+      </div>
+      <div class="toggle" onclick="tog('j6',this)">+ expand</div>
+    </div>
+
+  </div>
+
+  <div class="section s3">
+    <div class="sec-label">Skills</div>
+    <div class="skills-grid">
+      <div>
+        <div class="sg-title">Technical / Engineering</div>
+        <div class="sg-body">
+          <strong>Python</strong> · VEX · REST APIs & webhooks<br>
+          Pipeline architecture · DCC integration<br>
+          <strong>Python</strong> already done, fix docker<br>
+          Distributed job queue management<br>
+          AI tools · Cursor/Codex · Postman<br>
+          JSON/XML · Monitoring & reporting
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">Graphics & Production</div>
+        <div class="sg-body">
+          <strong>Houdini</strong> · Nuke · Fusion · Solaris/USD<br>
+          Procedural systems · simulations · VFX<br>
+          Lookdev · rendering · compositing<br>
+          <strong>3ds Max</strong> · Redshift · Photoshop<br>
+          ComfyUI · Midjourney · Kling · AI tools
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">Soft Skills</div>
+        <div class="sg-body">
+          Mentoring & knowledge sharing<br>
+          Cross-department collaboration<br>
+          Strategic problem solving<br>
+          Workflow planning & change management<br>
+          People remember me — and come back<br>
+          Building lasting professional relationships
+        </div>
+      </div>
+      <div>
+        <div class="sg-title">Education</div>
+        <div class="sg-body">
+          <strong>Bachelor of Engineering</strong><br>
+          Brest State Technical University<br>
+          Belarus · 2009 — 2014<br><br>
+          English (Intermediate) · Polish (Native)
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function tog(id, btn){
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+  btn.textContent = el.classList.contains('open') ? '— collapse' : '+ expand';
+}
+
+const canvas = document.getElementById('grid');
+const ctx = canvas.getContext('2d');
+let W, H;
+let mouse = {x: 0, y: 0};
+let target = {x: 0, y: 0};
+let current = {x: 0, y: 0};
+const STEP = 52;
+const INFLUENCE = 180; // px radius of mouse pull
+const STRENGTH = 28;   // max displacement
+
+window.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+function resize(){
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+
+function draw(){
+  // smooth mouse follow
+  current.x += (mouse.x - current.x) * 0.06;
+  current.y += (mouse.y - current.y) * 0.06;
+
+  ctx.clearRect(0, 0, W, H);
+
+  const cols = Math.ceil(W / STEP) + 2;
+  const rows = Math.ceil(H / STEP) + 2;
+
+  // Build displaced grid points
+  const pts = [];
+  for(let row = -1; row <= rows; row++){
+    for(let col = -1; col <= cols; col++){
+      const bx = col * STEP;
+      const by = row * STEP;
+      const dx = bx - current.x;
+      const dy = by - current.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      let px = bx, py = by;
+      if(dist < INFLUENCE && dist > 0){
+        const force = (1 - dist / INFLUENCE);
+        // pull toward mouse
+        px = bx - (dx / dist) * force * STRENGTH;
+        py = by - (dy / dist) * force * STRENGTH;
+      }
+      pts.push({px, py, col, row});
+    }
+  }
+
+  const getpt = (col, row) => pts.find(p => p.col === col && p.row === row);
+
+  ctx.strokeStyle = 'rgba(255,122,26,0.22)';
+  ctx.lineWidth = 0.45;
+
+  // Draw horizontal lines
+  for(let row = -1; row <= rows; row++){
+    ctx.beginPath();
+    let first = true;
+    for(let col = -1; col <= cols; col++){
+      const p = getpt(col, row);
+      if(!p) continue;
+      if(first){ ctx.moveTo(p.px, p.py); first = false; }
+      else ctx.lineTo(p.px, p.py);
+    }
+    ctx.stroke();
+  }
+
+  // Draw vertical lines
+  for(let col = -1; col <= cols; col++){
+    ctx.beginPath();
+    let first = true;
+    for(let row = -1; row <= rows; row++){
+      const p = getpt(col, row);
+      if(!p) continue;
+      if(first){ ctx.moveTo(p.px, p.py); first = false; }
+      else ctx.lineTo(p.px, p.py);
+    }
+    ctx.stroke();
+  }
+
+  // Draw intersection dots
+  for(const p of pts){
+    const dx = p.px - current.x;
+    const dy = p.py - current.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const proximity = dist < INFLUENCE ? (1 - dist/INFLUENCE) : 0;
+    const alpha = 0.25 + proximity * 0.6;
+    const size = 1.2 + proximity * 2;
+    ctx.beginPath();
+    ctx.arc(p.px, p.py, size, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255,122,26,${alpha})`;
+    ctx.fill();
+  }
+
+  requestAnimationFrame(draw);
+}
+
+resize();
+window.addEventListener('resize', resize);
+draw();
+</script>
+</body>
+</html>
