@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanna Kachurouskaya — IT Specialist · AI Tools · Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0a0a0c;
+  --bg2:#111114;
+  --accent:#ffd900;
+  --text:#e8e6e0;
+  --muted:#c2c2c2;
+  --dim:#494949;
+  --border:#1e1e22;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-weight:300;overflow-x:hidden;}
+
+canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;opacity:0.25;pointer-events:none;z-index:0;}
+
+.wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:48px 48px 100px;}
+
+/* LANG BUTTON */
+#lang-btn{
+  position:fixed;top:24px;right:24px;z-index:100;
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  padding:6px 14px;background:transparent;border:1px solid var(--dim);color:var(--muted);
+  cursor:pointer;transition:all .2s;
+}
+#lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+/* HEADER */
+.header{padding-bottom:40px;margin-bottom:56px;border-bottom:1px solid var(--border);animation:fadeUp .8s ease both;}
+.name{font-family:'Space Mono',monospace;font-size:42px;font-weight:700;letter-spacing:-2px;color:#fff;line-height:1;margin-bottom:10px;}
+.name em{color:var(--accent);font-style:normal;}
+.subtitle{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:24px;}
+.contacts{display:flex;flex-wrap:wrap;gap:24px;font-size:14px;color:var(--muted);}
+.contacts a{color:var(--accent);text-decoration:none;transition:opacity .2s;}
+.contacts a:hover{opacity:.6;}
+
+/* SECTION */
+.section{margin-bottom:52px;animation:fadeUp .8s ease both;}
+.s1{animation-delay:.1s}.s2{animation-delay:.2s}.s3{animation-delay:.3s}
+
+.sec-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:14px;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ABOUT */
+.about-text{font-size:19px;line-height:1.95;color:#d0d0d0;max-width:700px;}
+.about-text p{margin-bottom:16px;}
+.about-text p:last-child{margin-bottom:0;}
+
+/* JOB */
+.job{margin-bottom:32px;padding:20px 20px 20px 24px;border-left:2px solid var(--border);transition:border-color .3s;cursor:default;position:relative;}
+.job:hover{border-left-color:var(--accent);}
+.job-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:4px;margin-bottom:2px;}
+.job-title{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#fff;}
+.job-date{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);white-space:nowrap;}
+.job-company{font-size:13px;color:var(--accent);margin-bottom:14px;letter-spacing:.5px;}
+.job-body{font-size:16.5px;line-height:1.9;color:#d8d8d8;display:none;}
+.job-body.open{display:block;animation:fadeUp .3s ease both;}
+.job-body p{margin-bottom:10px;}
+.job-body p:last-child{margin-bottom:0;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+.tag{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;padding:4px 9px;border:1px solid var(--dim);color:var(--muted);border-radius:2px;transition:all .2s;}
+.tag:hover{border-color:var(--accent);color:var(--accent);}
+.toggle{margin-top:12px;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);cursor:pointer;transition:color .2s;user-select:none;display:inline-block;}
+.toggle:hover{color:var(--accent);}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.sg-title{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.sg-body{font-size:15px;line-height:2.1;color:#c0c0c0;}
+.sg-body strong{color:#ccc;font-weight:400;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:600px){
+  .wrap{padding:32px 20px 60px;}
+  .name{font-size:28px;}
+  .skills-grid{grid-template-columns:1fr;}
+  #lang-btn{top:16px;right:16px;}
+}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<button id="lang-btn" onclick="toggleLang()">PL</button>
+<div class="wrap">
+
+  <div class="header">
+    <div class="name">Hanna <em>Kachurouskaya</em></div>
+    <div class="subtitle" data-i18n="subtitle"></div>
+    <div class="contacts">
+      <span data-i18n="location"></span>
+      <a href="mailto:valynets.h@gmail.com">valynets.h@gmail.com</a>
+      <span>+48 797 314 747</span>
+      <a href="https://www.linkedin.com/in/hanna-kachurouskaya-096aab114/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Valhannal" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.behance.net/ValHanna" target="_blank">Behance</a>
+    </div>
+  </div>
+
+  <div class="section s1">
+    <div class="sec-label" data-i18n="sec_profile"></div>
+    <div class="about-text">
+      <p data-i18n="profile_1"></p>
+      <p data-i18n="profile_2"></p>
+    </div>
+  </div>
+
+  <div class="section s2">
+    <div class="sec-label" data-i18n="sec_experience"></div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title" data-i18n="j1_title"></div>
+        <div class="job-date" data-i18n="j1_date"></div>
+      </div>
+      <div class="job-company" data-i18n="j1_company"></div>
+      <div class="job-body open" id="j1">
+        <p data-i18n="j1_p1"></p>
+        <p data-i18n="j1_p2"></p>
+        <p data-i18n="j1_p3"></p>
+        <p data-i18n="j1_p4"></p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">Docker</span><span class="tag">Deadline (render farm)</span><span class="tag">Flow Production / ShotGrid</span><span class="tag">Ayon</span><span class="tag">Slack API</span><span class="tag">Toggl</span><span class="tag">Git / GitHub</span><span class="tag">JSON/XML</span><span class="tag">Postman</span><span class="tag">Cursor</span><span class="tag">Claude Code</span><span class="tag">AI agentic workflows</span>
+        </div>
+      </div>
+      <div class="toggle" data-job="j1" onclick="tog('j1',this)"></div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title" data-i18n="j2_title"></div>
+        <div class="job-date" data-i18n="j2_date"></div>
+      </div>
+      <div class="job-company" data-i18n="j2_company"></div>
+      <div class="job-body" id="j2">
+        <p data-i18n="j2_p1"></p>
+        <p data-i18n="j2_p2"></p>
+        <p data-i18n="j2_p3"></p>
+        <p data-i18n="j2_p4"></p>
+        <div class="tags">
+          <span class="tag">Houdini</span><span class="tag">3ds Max</span><span class="tag">Nuke</span><span class="tag">Fusion</span><span class="tag">USD/Solaris</span><span class="tag">Redshift</span><span class="tag">Deadline</span><span class="tag">VEX</span><span class="tag">Python</span><span class="tag">ComfyUI</span><span class="tag">Midjourney</span><span class="tag">Kling</span><span class="tag">AI tools in production</span>
+        </div>
+      </div>
+      <div class="toggle" data-job="j2" onclick="tog('j2',this)"></div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title" data-i18n="j3_title"></div>
+        <div class="job-date" data-i18n="j3_date"></div>
+      </div>
+      <div class="job-company" data-i18n="j3_company"></div>
+      <div class="job-body" id="j3">
+        <p data-i18n="j3_p1"></p>
+        <div class="tags">
+          <span class="tag">3ds Max</span><span class="tag">V-Ray</span><span class="tag">Corona</span><span class="tag">Houdini</span><span class="tag">Nuke</span><span class="tag">Photoshop</span>
+        </div>
+      </div>
+      <div class="toggle" data-job="j3" onclick="tog('j3',this)"></div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title" data-i18n="j4_title"></div>
+        <div class="job-date" data-i18n="j4_date"></div>
+      </div>
+      <div class="job-company" data-i18n="j4_company"></div>
+      <div class="job-body" id="j4">
+        <p data-i18n="j4_p1"></p>
+        <div class="tags">
+          <span class="tag">3ds Max</span><span class="tag">V-Ray</span><span class="tag">Corona</span><span class="tag">Revit</span><span class="tag">SpeedTree</span><span class="tag">Unreal Engine</span><span class="tag">Photoshop</span>
+        </div>
+      </div>
+      <div class="toggle" data-job="j4" onclick="tog('j4',this)"></div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title" data-i18n="j5_title"></div>
+        <div class="job-date" data-i18n="j5_date"></div>
+      </div>
+      <div class="job-company" data-i18n="j5_company"></div>
+      <div class="job-body" id="j5">
+        <p data-i18n="j5_p1"></p>
+        <div class="tags">
+          <span class="tag">AutoCAD</span><span class="tag">Revit</span><span class="tag">BIM</span>
+        </div>
+      </div>
+      <div class="toggle" data-job="j5" onclick="tog('j5',this)"></div>
+    </div>
+
+  </div>
+
+  <div class="section s3">
+    <div class="sec-label" data-i18n="sec_skills"></div>
+    <div class="skills-grid">
+      <div>
+        <div class="sg-title" data-i18n="sg_tech_title"></div>
+        <div class="sg-body" data-i18n="sg_tech_body"></div>
+      </div>
+      <div>
+        <div class="sg-title" data-i18n="sg_graphics_title"></div>
+        <div class="sg-body" data-i18n="sg_graphics_body"></div>
+      </div>
+      <div>
+        <div class="sg-title" data-i18n="sg_soft_title"></div>
+        <div class="sg-body" data-i18n="sg_soft_body"></div>
+      </div>
+      <div>
+        <div class="sg-title" data-i18n="sg_edu_title"></div>
+        <div class="sg-body" data-i18n="sg_edu_body"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ─── TRANSLATIONS ─── */
+const i18n = {
+  en: {
+    subtitle: "Pipeline Developer &nbsp;·&nbsp; Automation &nbsp;·&nbsp; AI Tools &nbsp;·&nbsp; Senior VFX &amp; Technical Artist",
+    location: "Kraków, Poland",
+    sec_profile: "Profile",
+    sec_experience: "Experience",
+    sec_skills: "Skills",
+
+    profile_1: "I started as a VFX artist and never stopped — I'm still doing the work. Over the years, the scope kept expanding: scripting tools to fix my own workflow, then the team's, then building full integrations between production systems. What began as an artist's instinct for efficiency turned into pipeline engineering, automation, and AI tooling. The titles stacked up, but the mindset was always the same.",
+    profile_2: "That combination is rare. I understand the creative environment these systems have to serve because I work in it daily. I know what a broken pipeline costs a production — in time, in nerves, in missed deadlines. I ask the structural questions, spot the gaps, and build solutions that last. If you need someone who can own the technical function independently while actually understanding what the artists need — that's where I fit.",
+
+    j1_title: "Pipeline Developer &amp; IT Automation",
+    j1_date: "Mar 2024 — Present",
+    j1_company: "Millarc CGI · Kraków",
+    j1_p1: "Took ownership of the studio's internal tooling and automation infrastructure — building, maintaining, and documenting systems used across a team of 20+. All work version-controlled via GitHub and written to be maintainable by others.",
+    j1_p2: "Deployed a self-hosted service using Docker to enable bidirectional Slack API communication beyond the internal network. Built and maintained a core integration suite connecting Houdini / 3ds Max + Deadline (render farm) + Flow Production (ShotGrid) via REST APIs and webhooks — covering render orchestration, asset delivery, and project tracking.",
+    j1_p3: "Developed an automated render-to-preview pipeline that eliminated manual processing entirely: enforcing file naming conventions, auto-generating previews from Deadline output, and pushing results to the project database and Flow Production. Built a standalone monitoring and reporting application integrating Timetastic, Toggl, and Slack APIs — providing real-time visibility into time tracking, project progress, and KPI dashboards with automated report delivery to studio management.",
+    j1_p4: "Active daily user of AI tools in a production context — evaluating new tools, advising the team on practical application and limitations, and integrating them into real workflows. Actively uses AI agentic workflows (Cursor, Claude Code) for writing and maintaining code. Conducted ongoing R&amp;D into pipeline platforms, leading adoption of Ayon as a pipeline management system.",
+
+    j2_title: "Senior VFX Artist",
+    j2_date: "Mar 2022 — Present",
+    j2_company: "Millarc CGI · Kraków",
+    j2_p1: "Created high-end visual effects and motion design content for commercial visuals, primarily for major Chinese tech brands including Huawei, OnePlus, Xiaomi, OPPO, Vivo and others. Delivered 50+ projects across advertising, product visualization, and motion design.",
+    j2_p2: "Among the work I'm most proud of: contributing to Millarc's signature motion wallpapers — factory-set animated visuals that ship on flagship smartphones and define the device's visual identity from the very first power-on. <a href=\"https://www.stashmedia.tv/mobile-motion-millarc-shows-off-smartphone-wallpapers/\" target=\"_blank\" style=\"color:var(--accent)\">Featured in Stash Magazine</a> as the studio cornering this niche — the most-viewed genre of motion design on the planet.",
+    j2_p3: "Specialized in procedural effects and simulations — volumes, particles, Vellum, RBD, FLIP, VDB, KineFX, and terrain generation — as well as custom procedural setups built with VEX and Python. Handled the full production pipeline from effect development and lookdev through rendering, compositing, and final delivery. Worked with USD and Solaris for scene assembly, Deadline for render distribution. Regularly developed custom tools and scripts to streamline technical workflows.",
+    j2_p4: "Actively integrated AI into the production workflow — primarily at the concept stage, and increasingly into final production. Led concept development and creative direction on effects. Mentored junior artists and contributed to team adoption of new tools and workflows.",
+
+    j3_title: "Digital Artist",
+    j3_date: "Mar 2021 — Mar 2022",
+    j3_company: "The Digital Bunch · Warsaw",
+    j3_p1: "Led and delivered high-quality architectural and interior visualization projects while mentoring junior team members and overseeing output quality. Expanded into motion design — developing animated project presentations and visual effects sequences. Handled the full motion pipeline from 3D simulation and rendering to final compositing.",
+
+    j4_title: "3D Graphic Artist",
+    j4_date: "Jan 2018 — Sep 2019",
+    j4_company: "VERO Digital",
+    j4_p1: "Created high-quality architectural and interior visualizations for residential and commercial projects. Built and refined detailed 3D models with a strong focus on materials, textures, lighting, and atmosphere. Worked with 360° renders deployed in VR environments for immersive client presentations.",
+
+    j5_title: "Junior Structural Design Engineer",
+    j5_date: "2013 — 2016",
+    j5_company: "BRIG · Belarus",
+    j5_p1: "Worked as part of a structural engineering team, conducting on-site inspections of 50+ building structures. Prepared technical documentation using AutoCAD and Revit. Independently introduced Revit (BIM) into the team's workflow — self-taught — becoming the first in the department to apply BIM methodology.",
+
+    sg_tech_title: "Technical / Engineering",
+    sg_tech_body: "<strong>Python</strong> · VEX · REST APIs &amp; webhooks<br>Pipeline architecture · DCC integration<br>Docker · self-hosted service deployment<br>Distributed job queue management<br>AI agentic workflows · Cursor · Claude Code<br>JSON/XML · Monitoring &amp; reporting",
+
+    sg_graphics_title: "Graphics &amp; Production",
+    sg_graphics_body: "<strong>Houdini</strong> · Nuke · Fusion · Solaris/USD<br>Procedural systems · simulations · VFX<br>Lookdev · rendering · compositing<br><strong>3ds Max</strong> · Redshift · Photoshop<br>ComfyUI · Midjourney · Kling · AI tools",
+
+    sg_soft_title: "Soft Skills",
+    sg_soft_body: "Mentoring &amp; knowledge sharing<br>Cross-department collaboration<br>Strategic problem solving<br>Workflow planning &amp; change management<br>People remember me — and come back<br>Building lasting professional relationships",
+
+    sg_edu_title: "Education",
+    sg_edu_body: "<strong>Bachelor of Engineering</strong><br>Brest State Technical University<br>Belarus · 2009 — 2014<br><br>English (Intermediate) · Polish (Fluent)",
+
+    collapse: "— collapse",
+    expand: "+ expand",
+    lang_btn: "PL",
+  },
+
+  pl: {
+    subtitle: "Pipeline Developer &nbsp;·&nbsp; Automatyzacja &nbsp;·&nbsp; Narzędzia AI &nbsp;·&nbsp; Senior VFX &amp; Technical Artist",
+    location: "Kraków, Polska",
+    sec_profile: "Profil",
+    sec_experience: "Doświadczenie",
+    sec_skills: "Umiejętności",
+
+    profile_1: "Zaczęłam jako artystka VFX i nigdy nie przestałam — nadal to robię. Z biegiem lat zakres się rozszerzał: najpierw skrypty do naprawy własnego workflow, potem całego zespołu, aż po budowanie pełnych integracji między systemami produkcyjnymi. To, co zaczęło się jako artystyczny instynkt do optymalizacji, przerodziło się w pipeline engineering, automatyzację i narzędzia AI. Tytuły się nawarstwiały, ale podejście zawsze było to samo.",
+    profile_2: "Taka kombinacja jest rzadka. Rozumiem środowisko kreatywne, któremu te systemy muszą służyć — bo pracuję w nim na co dzień. Wiem, co kosztuje zepsuty pipeline: czas, nerwy, przekroczone terminy. Zadaję pytania o strukturę, wyłapuję luki i buduję rozwiązania, które działają długoterminowo. Jeśli szukasz kogoś, kto samodzielnie poprowadzi stronę techniczną, rozumiejąc jednocześnie, czego potrzebują artyści — tu jest moje miejsce.",
+
+    j1_title: "Pipeline Developer &amp; Automatyzacja IT",
+    j1_date: "mar 2024 — obecnie",
+    j1_company: "Millarc CGI · Kraków",
+    j1_p1: "Przejęłam odpowiedzialność za wewnętrzny tooling i infrastrukturę automatyzacji studia — budując, utrzymując i dokumentując systemy używane przez 20-osobowy zespół. Całość wersjonowana na GitHubie i pisana z myślą o czytelności dla innych.",
+    j1_p2: "Postawiłam self-hosted serwis na Dockerze, umożliwiając dwukierunkową komunikację przez Slack API poza siecią wewnętrzną. Zbudowałam i utrzymuję core integrację łączącą Houdini / 3ds Max + Deadline (render farm) + Flow Production (ShotGrid) przez REST APIs i webhooks — obejmującą orkiestrację renderów, dostarczanie assetów i śledzenie projektów.",
+    j1_p3: "Opracowałam zautomatyzowany pipeline render-to-preview eliminujący ręczne przetwarzanie: wymuszanie konwencji nazewnictwa plików, automatyczne generowanie podglądów z outputu Deadline i przesyłanie wyników do bazy projektów i Flow Production. Zbudowałam standalone aplikację monitorującą integrującą Timetastic, Toggl i Slack APIs — zapewniającą wgląd w czasie rzeczywistym w time tracking, postęp projektów i dashboardy KPI z automatycznym dostarczaniem raportów do zarządu.",
+    j1_p4: "Aktywna codzienna użytkowniczka narzędzi AI w kontekście produkcyjnym — oceniam nowe narzędzia, doradzam zespołowi w praktycznym zastosowaniu i ograniczeniach, integruję je w rzeczywistych workflowach. Aktywnie korzystam z AI agentic workflows (Cursor, Claude Code) przy pisaniu i utrzymaniu kodu. Prowadziłam bieżące R&amp;D dotyczące platform pipeline'owych, wdrażając Ayon jako system zarządzania pipeline'em.",
+
+    j2_title: "Senior VFX Artist",
+    j2_date: "mar 2022 — obecnie",
+    j2_company: "Millarc CGI · Kraków",
+    j2_p1: "Tworzyłam wysokiej jakości efekty wizualne i motion design dla materiałów komercyjnych, przede wszystkim dla czołowych chińskich marek technologicznych: Huawei, OnePlus, Xiaomi, OPPO, Vivo i innych. Zrealizowałam 50+ projektów w obszarze reklamy, wizualizacji produktów i motion design.",
+    j2_p2: "Szczególnie cenię sobie udział w tworzeniu charakterystycznych motion wallpapers Millarc — fabrycznie ustawionych animowanych wizualizacji, które trafiają na flagowe smartfony i definiują wizualną tożsamość urządzenia od pierwszego uruchomienia. Studio zostało wyróżnione w <a href=\"https://www.stashmedia.tv/mobile-motion-millarc-shows-off-smartphone-wallpapers/\" target=\"_blank\" style=\"color:var(--accent)\">Stash Magazine</a> jako pionier tej niszy — najczęściej oglądanego gatunku motion design na świecie.",
+    j2_p3: "Specjalizuję się w efektach proceduralnych i symulacjach — volumes, particles, Vellum, RBD, FLIP, VDB, KineFX oraz generowaniu terenu — a także w niestandardowych setupach proceduralnych budowanych w VEX i Pythonie. Obsługiwałam pełny pipeline produkcyjny: od opracowywania efektów i lookdevu, przez rendering i compositing, aż po finalną dostawę. Pracowałam z USD i Solaris do montażu sceny, Deadline do dystrybucji renderów. Regularnie opracowywałam własne narzędzia i skrypty usprawniające workflow.",
+    j2_p4: "Aktywnie integrowałam AI w workflow produkcyjnym — przede wszystkim na etapie koncepcji, a coraz częściej także w finalnej produkcji. Prowadziłam rozwój konceptów i kierowałam artystycznie efektami. Mentorowałam młodszych artystów i wspierałam zespół we wdrażaniu nowych narzędzi i workflowów.",
+
+    j3_title: "Digital Artist",
+    j3_date: "mar 2021 — mar 2022",
+    j3_company: "The Digital Bunch · Warszawa",
+    j3_p1: "Prowadziłam i dostarczałam wysokiej jakości projekty wizualizacji architektonicznych i wnętrzarskich, mentorując młodszych członków zespołu i nadzorując jakość outputu. Rozszerzyłam działalność na motion design — opracowywałam animowane prezentacje projektów i sekwencje efektów wizualnych. Obsługiwałam pełny pipeline motion od symulacji 3D i renderowania po finalny compositing.",
+
+    j4_title: "3D Graphic Artist",
+    j4_date: "sty 2018 — wrz 2019",
+    j4_company: "VERO Digital",
+    j4_p1: "Tworzyłam wysokiej jakości wizualizacje architektoniczne i wnętrzarskie dla projektów mieszkaniowych i komercyjnych. Budowałam i dopracowywałam szczegółowe modele 3D z silnym naciskiem na materiały, tekstury, oświetlenie i atmosferę. Pracowałam z renderami 360° wdrożonymi w środowiskach VR do immersywnych prezentacji klientom.",
+
+    j5_title: "Junior Structural Design Engineer",
+    j5_date: "2013 — 2016",
+    j5_company: "BRIG · Białoruś",
+    j5_p1: "Pracowałam w zespole inżynierów konstrukcyjnych, przeprowadzając inspekcje terenowe 50+ konstrukcji budowlanych różnych typów obiektów. Przygotowywałam dokumentację techniczną w AutoCAD i Revit. Samodzielnie — samoucząc się — wdrożyłam Revit (BIM) do workflow zespołu, stając się pierwszą osobą w dziale stosującą metodologię BIM.",
+
+    sg_tech_title: "Techniczne / Inżynieryjne",
+    sg_tech_body: "<strong>Python</strong> · VEX · REST APIs &amp; webhooks<br>Architektura pipeline'u · integracja DCC<br>Docker · wdrożenie self-hosted service<br>Zarządzanie kolejką zadań (render farm)<br>AI agentic workflows · Cursor · Claude Code<br>JSON/XML · monitoring &amp; raportowanie",
+
+    sg_graphics_title: "Grafika &amp; Produkcja",
+    sg_graphics_body: "<strong>Houdini</strong> · Nuke · Fusion · Solaris/USD<br>Systemy proceduralne · symulacje · VFX<br>Lookdev · rendering · compositing<br><strong>3ds Max</strong> · Redshift · Photoshop<br>ComfyUI · Midjourney · Kling · narzędzia AI",
+
+    sg_soft_title: "Umiejętności miękkie",
+    sg_soft_body: "Mentoring i dzielenie się wiedzą<br>Współpraca między działami<br>Strategiczne rozwiązywanie problemów<br>Planowanie workflow i zarządzanie zmianą<br>Ludzie mnie pamiętają — i wracają<br>Budowanie trwałych relacji zawodowych",
+
+    sg_edu_title: "Wykształcenie",
+    sg_edu_body: "<strong>Inżynier</strong><br>Politechnika Brzeska<br>Białoruś · 2009 — 2014<br><br>Angielski (komunikatywny) · Polski (biegły)",
+
+    collapse: "— zwiń",
+    expand: "+ rozwiń",
+    lang_btn: "EN",
+  }
+};
+
+let currentLang = 'en';
+
+function applyLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  document.querySelectorAll('.toggle').forEach(btn => {
+    const jobId = btn.getAttribute('data-job');
+    const el = document.getElementById(jobId);
+    btn.textContent = el && el.classList.contains('open') ? t.collapse : t.expand;
+  });
+
+  document.getElementById('lang-btn').textContent = t.lang_btn;
+  document.documentElement.lang = lang;
+}
+
+function toggleLang() {
+  applyLang(currentLang === 'en' ? 'pl' : 'en');
+}
+
+function tog(id, btn) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+  const t = i18n[currentLang];
+  btn.textContent = el.classList.contains('open') ? t.collapse : t.expand;
+}
+
+applyLang('en');
+
+/* ─── DOT GRID BACKGROUND (mouse-reactive) ─── */
+(function () {
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+
+  const dotRadius = 2;
+  const dotMargin = 40;
+  const spaceForOneDot = 2 * dotMargin;
+  const gridPadding = 20;
+  const smallDotRadius = 1;
+  const smallDotMargin = 10;
+  const spaceForSmallDot = 2 * smallDotMargin;
+
+  const COLOR_AMBIENT = 'rgba(255, 217, 0, 0.14)';
+  const COLOR_AMBIENT_LINE = 'rgba(255, 217, 0, 0.28)';
+  const RADIUS_MULT = 1.95;
+
+  let W = 0, H = 0, visibleDotCount = 3, mouseX = 0, mouseY = 0;
+  const FIXED_DOTS = [[3, 1], [4, 5], [4, 7], [6, 8], [8, 4], [10, 6], [20, 8]];
+
+  function cellHash(i, j) { const n = Math.sin(i * 127.1 + j * 311.7) * 43758.5453; return n - Math.floor(n); }
+  function blobMaxRadius() { return spaceForOneDot * visibleDotCount * RADIUS_MULT; }
+  function dotDistance(mx, my, x, y) { return Math.hypot(x - mx, y - my); }
+
+  function inRevealBlob(mx, my, x, y, i, j) {
+    const dx = x - mx, dy = y - my, d = Math.hypot(dx, dy), angle = Math.atan2(dy, dx), base = blobMaxRadius();
+    const wobble = 1 + 0.3 * Math.sin(angle * 2.3 + mx * 0.001) + 0.24 * Math.sin(angle * 4.1 - my * 0.001 + 1.7) + 0.18 * Math.cos(angle * 6.7 + 0.9);
+    return d < base * wobble * (0.68 + 0.5 * cellHash(i, j));
+  }
+
+  function cursorProximity(mx, my, x, y) { return Math.max(0, Math.min(1, 1 - dotDistance(mx, my, x, y) / blobMaxRadius())); }
+  function accentStrength(t) { return t * t; }
+
+  function resize() {
+    W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight;
+    visibleDotCount = W < 600 ? 2 : 3; mouseX = W / 2; mouseY = H / 2; redraw(mouseX, mouseY);
+  }
+
+  function gridPos(col, row) { return { x: gridPadding + col * spaceForOneDot, y: gridPadding + row * spaceForOneDot }; }
+
+  function drawDot(x, y, fill, stroke, lineWidth) {
+    ctx.fillStyle = fill; ctx.beginPath(); ctx.arc(x, y, dotRadius, 0, Math.PI * 2); ctx.fill();
+    if (stroke) {
+      ctx.strokeStyle = stroke; ctx.lineWidth = lineWidth ?? 0.45; ctx.beginPath();
+      ctx.moveTo(x, y); ctx.lineTo(x - dotMargin, y); ctx.moveTo(x, y); ctx.lineTo(x + dotMargin, y);
+      ctx.moveTo(x, y); ctx.lineTo(x, y + dotMargin); ctx.moveTo(x, y); ctx.lineTo(x, y - dotMargin); ctx.stroke();
+    }
+  }
+
+  function drawDotNearCursor(x, y, t) {
+    const a = accentStrength(t);
+    drawDot(x, y, `rgba(255, 217, 0, ${0.44 + 0.5 * a})`, `rgba(255, 217, 0, ${0.42 + 0.56 * a})`, 0.42 + 0.95 * a);
+  }
+
+  function drawSmallDot(x, y, color, radius) { ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, radius ?? smallDotRadius, 0, Math.PI * 2); ctx.fill(); }
+
+  function drawSmallDotNearCursor(x, y, t) {
+    const a = accentStrength(t);
+    drawSmallDot(x, y, a > 0.25 ? `rgba(255, 217, 0, ${0.38 + 0.52 * a})` : `rgba(170, 170, 168, ${0.38 + 0.52 * a})`, smallDotRadius + 0.65 * a);
+  }
+
+  function draw5x5(x, y) {
+    ctx.save(); ctx.translate(x, y); ctx.fillStyle = COLOR_AMBIENT;
+    for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) { ctx.beginPath(); ctx.arc(i * 10, j * 10, 1, 0, Math.PI * 2); ctx.fill(); }
+    ctx.restore();
+  }
+
+  function drawAmbientBlocks() {
+    draw5x5(W / 21, H / 6); draw5x5(W / 21, H / 2); draw5x5(W / 21, H / 1.2);
+    if (W > 500) { draw5x5(W / 1.2, H / 6); draw5x5(W / 1.2, H / 2); draw5x5(W / 1.2, H / 1.2); }
+  }
+
+  function drawFixedMarker(col, row) {
+    const { x, y } = gridPos(col, row);
+    drawDot(x, y, COLOR_AMBIENT, COLOR_AMBIENT_LINE, 0.45);
+    for (let i = -1; i < 2; i++) for (let j = -1; j < 2; j++) drawSmallDot(x + i * spaceForSmallDot, y + j * spaceForSmallDot, 'rgba(148, 148, 148, 0.22)');
+  }
+
+  function drawInteractiveGrid(mx, my) {
+    const cols = Math.floor((W - gridPadding) / spaceForOneDot), rows = Math.floor((H - gridPadding) / spaceForOneDot);
+    for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
+      const { x, y } = gridPos(i, j);
+      if (inRevealBlob(mx, my, x, y, i, j)) drawDotNearCursor(x, y, cursorProximity(mx, my, x, y));
+    }
+    for (let i = 0; i < Math.floor((W - gridPadding) / spaceForSmallDot); i++) for (let j = 0; j < Math.floor((H - gridPadding) / spaceForSmallDot); j++) {
+      const x = gridPadding + i * spaceForSmallDot, y = gridPadding + j * spaceForSmallDot;
+      if (inRevealBlob(mx, my, x, y, i, j)) drawSmallDotNearCursor(x, y, cursorProximity(mx, my, x, y));
+    }
+  }
+
+  function redraw(mx, my) {
+    ctx.clearRect(0, 0, W, H); drawAmbientBlocks();
+    FIXED_DOTS.forEach(([col, row]) => { if (gridPos(col, row).x < W - gridPadding) drawFixedMarker(col, row); });
+    drawInteractiveGrid(mx, my);
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; redraw(mouseX, mouseY); });
+  resize();
+})();
+</script>
+</body>
+</html>
