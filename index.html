@@ -376,20 +376,17 @@ applyLang('en');
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
 
-  const dotRadius = 2;
-  const dotMargin = 40;
+  const dotRadius = 1.4;
+  const dotMargin = 28;
   const spaceForOneDot = 2 * dotMargin;
   const gridPadding = 20;
-  const smallDotRadius = 1;
-  const smallDotMargin = 10;
+  const smallDotRadius = 0.7;
+  const smallDotMargin = 7;
   const spaceForSmallDot = 2 * smallDotMargin;
 
-  const COLOR_AMBIENT = 'rgba(255, 217, 0, 0.14)';
-  const COLOR_AMBIENT_LINE = 'rgba(255, 217, 0, 0.28)';
   const RADIUS_MULT = 1.95;
 
-  let W = 0, H = 0, visibleDotCount = 3, mouseX = 0, mouseY = 0;
-  const FIXED_DOTS = [[3, 1], [4, 5], [4, 7], [6, 8], [8, 4], [10, 6], [20, 8]];
+  let W = 0, H = 0, visibleDotCount = 3, mouseX = -9999, mouseY = -9999;
 
   // continuous sweep — a soft band of light drifting across the grid on its own
   let sweepX = -300;
@@ -417,7 +414,7 @@ applyLang('en');
 
   function resize() {
     W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight;
-    visibleDotCount = W < 600 ? 2 : 3; mouseX = W / 2; mouseY = H / 2; redraw(mouseX, mouseY);
+    visibleDotCount = W < 600 ? 2 : 3; redraw(mouseX, mouseY);
   }
 
   function gridPos(col, row) { return { x: gridPadding + col * spaceForOneDot, y: gridPadding + row * spaceForOneDot }; }
@@ -433,31 +430,14 @@ applyLang('en');
 
   function drawDotNearCursor(x, y, t) {
     const a = accentStrength(t);
-    drawDot(x, y, `rgba(255, 217, 0, ${0.44 + 0.5 * a})`, `rgba(255, 217, 0, ${0.42 + 0.56 * a})`, 0.42 + 0.95 * a);
+    drawDot(x, y, `rgba(255, 255, 255, ${0.44 + 0.5 * a})`, `rgba(255, 255, 255, ${0.42 + 0.56 * a})`, 0.42 + 0.95 * a);
   }
 
   function drawSmallDot(x, y, color, radius) { ctx.fillStyle = color; ctx.beginPath(); ctx.arc(x, y, radius ?? smallDotRadius, 0, Math.PI * 2); ctx.fill(); }
 
   function drawSmallDotNearCursor(x, y, t) {
     const a = accentStrength(t);
-    drawSmallDot(x, y, a > 0.25 ? `rgba(255, 217, 0, ${0.38 + 0.52 * a})` : `rgba(170, 170, 168, ${0.38 + 0.52 * a})`, smallDotRadius + 0.65 * a);
-  }
-
-  function draw5x5(x, y) {
-    ctx.save(); ctx.translate(x, y); ctx.fillStyle = COLOR_AMBIENT;
-    for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) { ctx.beginPath(); ctx.arc(i * 10, j * 10, 1, 0, Math.PI * 2); ctx.fill(); }
-    ctx.restore();
-  }
-
-  function drawAmbientBlocks() {
-    draw5x5(W / 21, H / 6); draw5x5(W / 21, H / 2); draw5x5(W / 21, H / 1.2);
-    if (W > 500) { draw5x5(W / 1.2, H / 6); draw5x5(W / 1.2, H / 2); draw5x5(W / 1.2, H / 1.2); }
-  }
-
-  function drawFixedMarker(col, row) {
-    const { x, y } = gridPos(col, row);
-    drawDot(x, y, COLOR_AMBIENT, COLOR_AMBIENT_LINE, 0.45);
-    for (let i = -1; i < 2; i++) for (let j = -1; j < 2; j++) drawSmallDot(x + i * spaceForSmallDot, y + j * spaceForSmallDot, 'rgba(148, 148, 148, 0.22)');
+    drawSmallDot(x, y, a > 0.25 ? `rgba(255, 255, 255, ${0.38 + 0.52 * a})` : `rgba(200, 200, 200, ${0.38 + 0.52 * a})`, smallDotRadius + 0.65 * a);
   }
 
   function drawInteractiveGrid(mx, my) {
@@ -475,8 +455,7 @@ applyLang('en');
   }
 
   function redraw(mx, my) {
-    ctx.clearRect(0, 0, W, H); drawAmbientBlocks();
-    FIXED_DOTS.forEach(([col, row]) => { if (gridPos(col, row).x < W - gridPadding) drawFixedMarker(col, row); });
+    ctx.clearRect(0, 0, W, H);
     drawInteractiveGrid(mx, my);
   }
 
